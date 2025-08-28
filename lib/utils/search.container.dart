@@ -41,6 +41,11 @@ class AppSearchContainer extends StatelessWidget {
               ),
               padding: EdgeInsets.fromLTRB(15.w, 11.h, 10.w, 11.h),
               child: AppTextField(
+                hintStyle: TextStyle(
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
                 onFieldSubmitted: (val) async {
                   _performSearch(val);
                 },

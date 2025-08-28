@@ -150,6 +150,7 @@ class AppTextField extends StatelessWidget {
           contentPadding: contentPadding,
           alignLabelWithHint: true,
           labelStyle: labelStyle,
+
           errorStyle: TextStyle(
             // ✅ yahan styling do
             fontSize: 12.sp,
