@@ -138,11 +138,7 @@ class WithdrawScreen extends StatelessWidget {
                             height: 40.h,
                             width: 279.w,
                             maxLines: 1,
-                            hintStyle: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey,
-                            ),
+
                             textSpace: -0.2,
                             keyBoardType: TextInputType.number,
                             hintText: AppLocalizations.of(

@@ -144,7 +144,18 @@ class AppTextField extends StatelessWidget {
           prefixText: prefixText,
           suffixText: surfixText,
           hintText: hintText,
-          hintStyle: hintStyle,
+          hintStyle:
+              hintStyle ??
+              TextStyle(
+                    fontSize: 15
+                        .sp, // fixed size (sp lekin system scaling ko ignore karega niche line se)
+                    color: Colors.black,
+                  )
+                  .copyWith(fontSize: 15.sp)
+                  .apply(
+                    fontSizeFactor:
+                        1 / MediaQuery.textScalerOf(context).scale(1.0),
+                  ),
           suffixIcon: iconData,
           labelText: labelText == '' ? null : labelText,
           contentPadding: contentPadding,

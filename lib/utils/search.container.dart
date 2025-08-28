@@ -41,11 +41,17 @@ class AppSearchContainer extends StatelessWidget {
               ),
               padding: EdgeInsets.fromLTRB(15.w, 11.h, 10.w, 11.h),
               child: AppTextField(
-                hintStyle: TextStyle(
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
+                hintStyle:
+                    TextStyle(
+                          fontSize: 15
+                              .sp, // fixed size (sp lekin system scaling ko ignore karega niche line se)
+                          color: Colors.black,
+                        )
+                        .copyWith(fontSize: 15.sp)
+                        .apply(
+                          fontSizeFactor:
+                              1 / MediaQuery.textScalerOf(context).scale(1.0),
+                        ),
                 onFieldSubmitted: (val) async {
                   _performSearch(val);
                 },
