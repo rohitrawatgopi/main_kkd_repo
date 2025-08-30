@@ -11,7 +11,7 @@ class CustomOfferCard extends StatelessWidget {
       },
       child: ClipRRect(
         borderRadius: BorderRadiusGeometry.circular(8.r),
-        child: SvgPicture.asset(
+        child: Image.asset(
           AppImage.special2,
           height: 180.h,
           width: 343.w,

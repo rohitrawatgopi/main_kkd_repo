@@ -6,6 +6,7 @@ import 'package:paint_shop/features/3bottom/product/widget/details.screen.dart'
     show RewardDetailsScreen;
 import 'package:paint_shop/features/3bottom/product/widget/offer/ui/offer.dart';
 import 'package:paint_shop/features/3bottom/product/widget/search/ui/search.product.dart';
+import 'package:paint_shop/features/3bottom/profile/ui/setting.dart';
 import 'package:paint_shop/features/3bottom/profile/ui/uploaddoc.dart';
 import 'package:paint_shop/features/3bottom/profile/widget/bank.edit.dart';
 import 'package:paint_shop/features/3bottom/profile/widget/profile.edit.dart'
@@ -25,6 +26,7 @@ final GoRouter appRouter = GoRouter(
       },
       routes: [
         GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
+        GoRoute(path: '/setting', builder: (context, state) => SettingScreen()),
         GoRoute(
           path: '/product',
 
@@ -116,6 +118,7 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/signup', builder: (context, state) => const SignupScreen()),
+
     GoRoute(
       path: '/LanguageDialog',
       builder: (context, state) => LanguageDialog(),

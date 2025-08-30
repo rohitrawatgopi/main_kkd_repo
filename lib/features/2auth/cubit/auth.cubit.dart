@@ -72,4 +72,37 @@ class AuthCubit extends Cubit<AuthState> {
     istermsChecked = !istermsChecked;
     emit(TermsCheckorNotState(isSSecure));
   }
+
+  Future<void> accountDelete() async {
+    emit(DeletAccountLoadingState());
+    try {
+      final ResponseModel response = await AuthRepo.deleteAccount();
+
+      if (response.success == true ||
+          response.message ==
+              "Your account will be deleted after 7 days unless you log in again.") {
+        emit(
+          DeletAccountSuccessState(
+            msg:
+                response.message.toString() ??
+                "If you do not log in within 7 days, your account will be permanently deleted.",
+          ),
+        );
+      } else if (response.success == false) {
+        emit(
+          DeletAccountFailState(
+            msg:
+                response.message.toString() ??
+                'Failed to delete account. Please try again.',
+          ),
+        );
+      }
+    } catch (e) {
+      emit(
+        DeletAccountFailState(
+          msg: e.toString() ?? "Failed to delete account. Please try again.",
+        ),
+      );
+    }
+  }
 }

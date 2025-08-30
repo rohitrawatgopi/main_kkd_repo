@@ -7,7 +7,7 @@ class CustomSingupHead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16.w, top: 72.h),
+      margin: EdgeInsets.only(left: 24.w, top: 72.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

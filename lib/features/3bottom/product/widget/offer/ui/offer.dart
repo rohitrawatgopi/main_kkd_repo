@@ -1,5 +1,4 @@
 import 'package:paint_shop/app/import.dart';
-import 'package:paint_shop/features/3bottom/product/widget/offer.product.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.cubit.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.state.dart';
 import 'package:paint_shop/l10n/app_localizations.dart';
@@ -38,6 +37,8 @@ class _CategoryProductSreenState extends State<OfferScreen> {
               return context.read<ProductOfferCubit>().getOffer();
             },
             child: AppContainer(
+              left: 8.w,
+              right: 8.w,
               child: Column(
                 children: [
                   Row(
@@ -91,7 +92,7 @@ class _CategoryProductSreenState extends State<OfferScreen> {
                                 if (index < productList.length) {
                                   return InkWell(
                                     onTap: () {},
-                                    child: OfferProductCard(
+                                    child: ProductCard(
                                       product: productList[index],
                                     ),
                                   );

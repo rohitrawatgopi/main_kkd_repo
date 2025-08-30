@@ -35,9 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(statusBarColor: AppColors.appColor),
-      child: Scaffold(
-        body: SafeArea(
-          child: Container(
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          body: Container(
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(

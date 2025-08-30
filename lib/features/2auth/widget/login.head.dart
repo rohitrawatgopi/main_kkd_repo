@@ -8,7 +8,7 @@ class CustomLoginHeaad extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50.1.h,
-      margin: EdgeInsets.only(left: 16.w),
+      margin: EdgeInsets.only(left: 24.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

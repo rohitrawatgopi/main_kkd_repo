@@ -1,5 +1,4 @@
 import 'package:paint_shop/app/import.dart';
-import 'package:paint_shop/core/services/token.hive.dart';
 import 'package:paint_shop/l10n/app_localizations.dart';
 
 void showLogoutDialog(BuildContext context) {
@@ -35,7 +34,7 @@ void showLogoutDialog(BuildContext context) {
                 color: Colors.red,
                 onPressed: () async {
                   await Hive.box('authBox').clear();
-                  await Token.getToken();
+
                   Navigator.pop(context);
 
                   context.go('/splash');

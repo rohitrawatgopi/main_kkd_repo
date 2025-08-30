@@ -31,7 +31,7 @@ void main() async {
         BlocProvider(create: (_) => ProductCubit()),
         BlocProvider(create: (_) => LanguageCubit()..loadSavedLanguage()),
         BlocProvider(create: (_) => ProfileCubit()),
-        BlocProvider(create: (_) => WithDrawCubit()),
+        BlocProvider(create: (_) => WithDrawCubit()..getPandingWithdrawl()),
         BlocProvider(create: (_) => NetworkCubit()),
         BlocProvider(create: (_) => ScannerCubit()),
         BlocProvider(create: (_) => ProductCategoryCubit()),

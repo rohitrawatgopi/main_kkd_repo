@@ -110,5 +110,25 @@
   "purchasingPoints": "खरीदने के पॉइंट: ",
   "hyundaiCretaPetrol": "हुंडई क्रेटा (E 1.5 पेट्रोल मैनुअल ट्रांसमिशन में उपलब्ध है।",
   "qrCodeUsedMessage": "",
-  "enteravalidemail": "एक वैध ईमेल दर्ज करें"
+  "enteravalidemail": "एक वैध ईमेल दर्ज करें",
+  "settings": "सेटिंग्स",
+  "username": "यूज़रनेम",
+  "email": "ईमेल",
+  "helpSupport": "मदद और सहायता",
+  "privacypolicy": "गोपनीयता नीति",
+  "deleteaccount": "खाता हटाएँ",
+  "couldntfindanyavailablenetworks": "कोई उपलब्ध नेटवर्क नहीं मिला",
+  "retry": "फिर से कोशिश करें",
+  "noconnection": "कोई कनेक्शन नहीं",
+  "pleasecheckyourinternetconnectivityandtryagain": "कृपया अपना इंटरनेट कनेक्शन जाँचें \n और दोबारा कोशिश करें",
+  "namemustbelessthancharacters": "नाम 50 अक्षरों से कम होना चाहिए",
+  "emailtoolong": "ईमेल बहुत लंबा है",
+  "required": "ज़रूरी",
+  "mincharacters": "कम से कम 6 अक्षर",
+  "iagreetothe ": "मैं सहमत हूँ",
+  "and": "और",
+  "emailusyourqueries": "हमें अपने सवाल ईमेल करें",
+  "areyousuretodelteaccount": "क्या आप वाकई अपना खाता हटाना चाहते हैं?\n\nअगर आप 7 दिनों तक लॉगिन नहीं करते, तो आपका खाता और उससे जुड़ा सारा डेटा स्थायी रूप से हटा दिया जाएगा।\n\nअगर आप 7 दिनों के अंदर दोबारा लॉगिन करते हैं, तो हटाने का अनुरोध अपने आप रद्द हो जाएगा।",
+  "deleteaccount": "खाता हटाएँ"
+
 }

@@ -39,7 +39,7 @@ class AppSearchContainer extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(36.r),
               ),
-              padding: EdgeInsets.fromLTRB(15.w, 11.h, 10.w, 11.h),
+              padding: EdgeInsets.fromLTRB(0.w, 11.h, 0.w, 11.h),
               child: AppTextField(
                 hintStyle:
                     TextStyle(
@@ -66,7 +66,10 @@ class AppSearchContainer extends StatelessWidget {
                 fontSize: 12.sp,
                 hintText: AppLocalizations.of(context)!.search,
                 isCollapsed: true,
-                contentPadding: EdgeInsets.zero,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 1,
+                  horizontal: 0.w,
+                ),
               ),
             ),
             Gap(10.w, color: Colors.transparent),

@@ -13,22 +13,10 @@ class CustomProfileHead extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          DropdownButton<String>(
-            value: currentLocale,
-            items: const [
-              DropdownMenuItem(value: 'en', child: Text('English')),
-              DropdownMenuItem(value: 'hi', child: Text('हिंदी')),
-            ],
-            onChanged: (String? lang) {
-              if (lang != null) {
-                context.read<LanguageCubit>().changeLanguage(lang);
-              }
-            },
-          ),
           Gap(10.w),
           InkWell(
-            onTap: () => showLogoutDialog(context),
-            child: Icon(Icons.logout, color: AppColors.red),
+            onTap: () => context.push("/setting"),
+            child: Icon(Icons.menu, color: Colors.black, size: 30.r),
           ),
         ],
       ),

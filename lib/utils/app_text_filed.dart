@@ -5,6 +5,7 @@ class AppTextField extends StatelessWidget {
   final double? height;
   final double? textHeight;
   final double? textSpace;
+  final BoxConstraints? prefixConstraints;
 
   final Widget? iconData;
   final Widget? leadingIcon;
@@ -48,6 +49,7 @@ class AppTextField extends StatelessWidget {
     super.key,
     this.textHeight,
     this.textSpace,
+    this.prefixConstraints,
     this.labelText,
     this.isCollapsed,
     this.width = 1,
@@ -84,7 +86,7 @@ class AppTextField extends StatelessWidget {
     this.surfixText,
     this.counterText,
     this.obscuringCharacter = '•',
-    this.borderRadius = 30,
+    this.borderRadius = 8,
     this.contentPadding = const EdgeInsets.symmetric(
       vertical: 14,
       horizontal: 12,
@@ -94,97 +96,90 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
-    return Container(
-      height: height,
-      width: w * width!,
-      decoration: BoxDecoration(
-        color: bgColor,
-        //  borderRadius: BorderRadius.circular(borderRadius),
+    return TextFormField(
+      textInputAction: TextInputAction.search, // 🛠️ Move to next line on enter
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
+      onFieldSubmitted: onFieldSubmitted,
+      inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'^\s'))],
+      enabled: enabled,
+
+      focusNode: focusNode,
+      initialValue: initialValue,
+      validator: validator,
+
+      onChanged: onChanged,
+      readOnly: readOnly,
+      obscureText: obscureText,
+      onTap: onTap,
+      textAlign: textAlign,
+      keyboardType: keyBoardType,
+      controller: controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      enableSuggestions: true,
+
+      style: TextStyle(
+        height: textHeight,
+        fontSize: fontSize,
+        color: textColor,
+        fontWeight: fontWeight,
+        letterSpacing: textSpace,
       ),
-      child: TextFormField(
-        textInputAction:
-            TextInputAction.search, // 🛠️ Move to next line on enter
-        textCapitalization: textCapitalization ?? TextCapitalization.none,
-        onFieldSubmitted: onFieldSubmitted,
-        inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'^\s'))],
-        enabled: enabled,
+      obscuringCharacter: obscuringCharacter,
+      decoration: InputDecoration(
+        fillColor: bgColor,
+        filled: true,
+        isDense: true,
+        suffix: surfixIcon,
+        prefixIcon: prefixIcon,
+        isCollapsed: isCollapsed,
+        prefixIconConstraints: prefixConstraints,
+        counterText: '',
+        prefix: leadingIcon,
+        prefixText: prefixText,
+        suffixText: surfixText,
+        hintText: hintText,
+        hintStyle:
+            hintStyle ??
+            TextStyle(
+                  fontSize: 15
+                      .sp, // fixed size (sp lekin system scaling ko ignore karega niche line se)
+                  color: Colors.black,
+                )
+                .copyWith(fontSize: 15.sp)
+                .apply(
+                  fontSizeFactor:
+                      1 / MediaQuery.textScalerOf(context).scale(1.0),
+                ),
+        suffixIcon: iconData,
+        labelText: labelText == '' ? null : labelText,
+        contentPadding: contentPadding,
+        alignLabelWithHint: true,
+        labelStyle: labelStyle,
 
-        focusNode: focusNode,
-        initialValue: initialValue,
-        validator: validator,
+        errorStyle: TextStyle(
+          // ✅ yahan styling do
+          fontSize: 12.sp,
 
-        onChanged: onChanged,
-        readOnly: readOnly,
-        obscureText: obscureText,
-        onTap: onTap,
-        textAlign: textAlign,
-        keyboardType: keyBoardType,
-        controller: controller,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        maxLength: maxLength,
-        maxLines: maxLines,
-        enableSuggestions: true,
-
-        style: TextStyle(
-          height: textHeight,
-          fontSize: fontSize,
-          color: textColor,
-          fontWeight: fontWeight,
-          letterSpacing: textSpace,
+          color: Colors.red,
+          fontWeight: FontWeight.w500,
         ),
-        obscuringCharacter: obscuringCharacter,
-        decoration: InputDecoration(
-          isDense: true,
-          suffix: surfixIcon,
-          prefixIcon: prefixIcon,
-          isCollapsed: isCollapsed,
-          counterText: '',
-          prefix: leadingIcon,
-          prefixText: prefixText,
-          suffixText: surfixText,
-          hintText: hintText,
-          hintStyle:
-              hintStyle ??
-              TextStyle(
-                    fontSize: 15
-                        .sp, // fixed size (sp lekin system scaling ko ignore karega niche line se)
-                    color: Colors.black,
-                  )
-                  .copyWith(fontSize: 15.sp)
-                  .apply(
-                    fontSizeFactor:
-                        1 / MediaQuery.textScalerOf(context).scale(1.0),
-                  ),
-          suffixIcon: iconData,
-          labelText: labelText == '' ? null : labelText,
-          contentPadding: contentPadding,
-          alignLabelWithHint: true,
-          labelStyle: labelStyle,
 
-          errorStyle: TextStyle(
-            // ✅ yahan styling do
-            fontSize: 12.sp,
-
-            color: Colors.red,
-            fontWeight: FontWeight.w500,
-          ),
-
-          // FIXED: Properly Apply Rounded Borders
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
-          ),
-          border: OutlineInputBorder(
-            // borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide.none,
-          ),
-          enabledBorder: OutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide.none,
+        // FIXED: Properly Apply Rounded Borders
+        errorBorder: OutlineInputBorder(borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: BorderSide(
+            color: const Color.fromARGB(255, 195, 196, 225),
           ),
         ),
       ),

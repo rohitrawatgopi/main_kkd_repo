@@ -2,7 +2,7 @@ import 'package:paint_shop/app/import.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;
-  ProductCard({super.key, required this.product});
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
                     imageUrl: product.productImage,
                     height: 114.h,
                     width: 128.w,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
 
                     errorWidget: (context, url, error) =>
                         const CircleAvatar(child: Icon(Icons.error)),
@@ -67,7 +67,7 @@ class ProductCard extends StatelessWidget {
                       maxLine: 2,
                       textOverflow: TextOverflow.ellipsis,
                     ),
-                    Gap(1.5.h),
+                    Gap(10.h),
                     AppText(
                       height: 1,
                       title: product.productId,

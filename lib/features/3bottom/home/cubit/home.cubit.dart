@@ -29,7 +29,20 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<void> userDetailsForProfile() async {
-    try {} catch (e) {
+    try {
+      final response = await HomeRepo.UserDetails();
+      if (response.success == true) {
+        _user = UserModel.fromJson(response.data);
+        reusableUser = _user!;
+        emit(
+          HomeSuccess(
+            user: _user!,
+            Category: _categories!,
+            prmotion: _prmotion!,
+          ),
+        );
+      }
+    } catch (e) {
       emit(HomeFailure(""));
     }
   }

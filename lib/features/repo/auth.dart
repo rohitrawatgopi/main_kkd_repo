@@ -49,4 +49,14 @@ class AuthRepo {
 
     return ResponseModel.fromJson(response.data as Map<String, dynamic>);
   }
+
+  static Future deleteAccount() async {
+    DioClient dioClient = DioClient();
+
+    final Response response = await dioClient.delete(
+      ApiEndpoints.deleteAccount,
+    );
+
+    return ResponseModel.fromJson(response.data as Map<String, dynamic>);
+  }
 }

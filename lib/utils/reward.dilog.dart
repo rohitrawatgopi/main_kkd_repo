@@ -120,7 +120,7 @@ class QrScarrenWidget {
               ),
 
               ReqAppText(
-                title: " by ",
+                title: "",
 
                 title2: (qrScanDataModel.scannedByName ?? '').length > 12
                     ? qrScanDataModel.scannedByName!.substring(0, 12) + ".."

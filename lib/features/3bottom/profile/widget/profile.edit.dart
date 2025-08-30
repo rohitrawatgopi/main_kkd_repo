@@ -112,9 +112,10 @@ class UdateProfileScreen extends StatelessWidget {
               Form(
                 key: _formKey,
                 child: Column(
-                  spacing: 6.h,
+                  spacing: 13.h,
                   children: [
                     AppTextField(
+                      labelText: AppLocalizations.of(context)!.fullName,
                       hintText: AppLocalizations.of(context)!.fullName,
                       controller: nameController,
                       validator: RequiredValidator(
@@ -123,6 +124,7 @@ class UdateProfileScreen extends StatelessWidget {
                     ),
 
                     AppTextField(
+                      labelText: AppLocalizations.of(context)!.contactNumber,
                       prefixText: "+91 ",
                       validator: MultiValidator([
                         PatternValidator(
@@ -198,6 +200,7 @@ class UdateProfileScreen extends StatelessWidget {
                     ),
 
                     AppTextField(
+                      labelText: AppLocalizations.of(context)!.permanentAddress,
                       hintText: AppLocalizations.of(context)!.permanentAddress,
                       controller: addressController,
                       validator: RequiredValidator(
@@ -206,6 +209,7 @@ class UdateProfileScreen extends StatelessWidget {
                     ),
 
                     AppTextField(
+                      labelText: AppLocalizations.of(context)!.pinCode,
                       keyBoardType: TextInputType.number,
                       validator: MultiValidator([
                         MaxLengthValidator(
@@ -358,6 +362,7 @@ class UdateProfileScreen extends StatelessWidget {
                   );
                 },
               ),
+              Gap(10.h),
             ],
           ),
         ),

@@ -47,63 +47,72 @@ class BottomNavigationBarScreen extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarContrastEnforced: true,
       ),
-      child: Scaffold(
-        body: BlocBuilder<NetworkCubit, NetworkState>(
-          builder: (context, state) {
-            if (state is NetworkDisconnected) {
-              return InternetBanner();
-            }
-            if (state is NetworkConnected) {
-              return child;
-            }
-            return Gap(2);
-          },
-        ),
-
-        bottomNavigationBar: Container(
-          height: 70,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [BoxShadow(blurRadius: 8, offset: Offset(0, -1))],
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          body: BlocBuilder<NetworkCubit, NetworkState>(
+            builder: (context, state) {
+              if (state is NetworkDisconnected) {
+                return InternetBanner();
+              }
+              if (state is NetworkConnected) {
+                return child;
+              }
+              return Gap(2);
+            },
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              NavIcon(
-                asset: AppImage.homeIcon,
-                label: AppLocalizations.of(context)!.home,
-                isActive: getIndex() == 0,
-                onTap: () => onTap(0),
-              ),
-              NavIcon(
-                asset: AppImage.productIcon,
-                label: AppLocalizations.of(context)!.product,
 
-                isActive: getIndex() == 1,
-                onTap: () => onTap(1),
-              ),
-              NavIcon(
-                asset: AppImage.qrIcon,
-                label: AppLocalizations.of(context)!.qrScan,
-                isActive: getIndex() == 2,
-                onTap: () => onTap(2),
-              ),
-              NavIcon(
-                asset: AppImage.withdrawIcon,
-                label: AppLocalizations.of(context)!.withdraw,
-                isActive: getIndex() == 3,
-                onTap: () {
-                  onTap(3);
-                  context.read<ProductCubit>().getPageWise();
-                },
-              ),
-              NavIcon(
-                asset: AppImage.profileIcon,
-                label: AppLocalizations.of(context)!.profile,
-                isActive: getIndex() == 4,
-                onTap: () => onTap(4),
-              ),
-            ],
+          bottomNavigationBar: Container(
+            height: 70,
+            decoration: BoxDecoration(
+              color: Colors.white, // background color dena zaruri hai
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1), // lighter shadow
+                  blurRadius: 12,
+                  spreadRadius: 0,
+                  offset: Offset(0, -2),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                NavIcon(
+                  asset: AppImage.homeIcon,
+                  label: AppLocalizations.of(context)!.home,
+                  isActive: getIndex() == 0,
+                  onTap: () => onTap(0),
+                ),
+                NavIcon(
+                  asset: AppImage.productIcon,
+                  label: AppLocalizations.of(context)!.product,
+                  isActive: getIndex() == 1,
+                  onTap: () => onTap(1),
+                ),
+                NavIcon(
+                  asset: AppImage.qrIcon,
+                  label: AppLocalizations.of(context)!.qrScan,
+                  isActive: getIndex() == 2,
+                  onTap: () => onTap(2),
+                ),
+                NavIcon(
+                  asset: AppImage.withdrawIcon,
+                  label: AppLocalizations.of(context)!.withdraw,
+                  isActive: getIndex() == 3,
+                  onTap: () {
+                    onTap(3);
+                    context.read<ProductCubit>().getPageWise();
+                  },
+                ),
+                NavIcon(
+                  asset: AppImage.profileIcon,
+                  label: AppLocalizations.of(context)!.profile,
+                  isActive: getIndex() == 4,
+                  onTap: () => onTap(4),
+                ),
+              ],
+            ),
           ),
         ),
       ),

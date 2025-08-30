@@ -5,9 +5,7 @@ import 'package:paint_shop/features/3bottom/withdraw/cubit/withdraw.state.dart';
 import 'package:paint_shop/features/repo/WithDraw.dart';
 
 class WithDrawCubit extends Cubit<WithDrawState> {
-  WithDrawCubit() : super(WithDrawInitial()) {
-    getPandingWithdrawl();
-  }
+  WithDrawCubit() : super(WithDrawInitial());
 
   Future<void> withdrawCoin({required String coin}) async {
     emit(WithDrawLoading());

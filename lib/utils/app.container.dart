@@ -6,10 +6,12 @@ class AppContainer extends StatelessWidget {
   final double? left;
   final double? right;
   final double? bottom;
+  final Color? color;
   const AppContainer({
     super.key,
     required this.child,
     this.right,
+    this.color,
     this.bottom,
     this.left,
     this.top,
@@ -20,7 +22,9 @@ class AppContainer extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
+
       decoration: BoxDecoration(
+        color: color,
         gradient: LinearGradient(
           end: Alignment.topCenter,
           begin: Alignment.bottomCenter,

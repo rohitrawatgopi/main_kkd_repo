@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:paint_shop/core/network/api_endpoints.dart';
 import 'package:paint_shop/core/services/token.hive.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   late final Dio _dio;
@@ -24,6 +25,13 @@ class DioClient {
         HttpHeaders.contentTypeHeader: ContentType.json.mimeType,
         HttpHeaders.authorizationHeader: 'Bearer ${token}',
       }
+      ..options.responseType = ResponseType.json
+      ..interceptors.add(
+        PrettyDioLogger(
+          compact: false,
+          logPrint: (object) => log(object.toString(), name: 'TMDB API'),
+        ),
+      )
       ..options.connectTimeout = const Duration(milliseconds: 100000)
       ..options.receiveTimeout = const Duration(milliseconds: 100000);
   }

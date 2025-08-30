@@ -10,14 +10,15 @@ class WithDrawaHistory extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: AppContainer(
+        left: 8.w,
         child: RefreshIndicator(
           onRefresh: () async {
             return context.read<HomeCubit>().userDetailsForProfile();
           },
           child: Column(
             children: [
-              Gap(20.h),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                     onTap: () => context.pop(),
@@ -48,6 +49,7 @@ class WithDrawaHistory extends StatelessWidget {
                 fontSize: 28.sp,
                 height: 1,
               ),
+              Gap(8.h),
               AppText(
                 title: AppLocalizations.of(context)!.availablePoint,
                 color: Colors.black,
@@ -58,7 +60,7 @@ class WithDrawaHistory extends StatelessWidget {
               Gap(10.h),
               TabBar(
                 labelColor: Colors.black,
-                unselectedLabelColor: Colors.grey,
+                unselectedLabelColor: Colors.black54,
                 indicatorColor: Colors.black,
                 tabs: const [
                   Tab(text: "Withdraw History"),
@@ -96,58 +98,71 @@ class WithDrawaHistory extends StatelessWidget {
                                   ? DateFormat('dd MMMM yyyy').format(dateTime)
                                   : "";
 
-                              return ListTile(
-                                leading: SizedBox(
-                                  width: 48.w,
-                                  height: 48.h,
-                                  child: ClipOval(
-                                    child: CachedNetworkImage(
-                                      cacheManager: MyCacheManager.instance,
-                                      imageUrl:
-                                          user.profilePick ??
-                                          "https://dummyimage.com/100x100",
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, url, error) =>
-                                          const CircleAvatar(
-                                            child: Icon(Icons.error),
-                                          ),
-                                      progressIndicatorBuilder:
-                                          (context, url, progress) => Center(
-                                            child: Shimmer.fromColors(
-                                              baseColor: Colors.grey[300]!,
-                                              highlightColor: Colors.grey[100]!,
-                                              child: CircleAvatar(radius: 80.r),
+                              return ListTileTheme(
+                                dense: true, // 👈 isse height kam ho jayegi
+
+                                horizontalTitleGap: 8
+                                    .w, // 👈 yeh title aur leading ka gap control karega
+                                child: ListTile(
+                                  contentPadding: EdgeInsets
+                                      .zero, // ✅ remove left-right padding
+
+                                  leading: SizedBox(
+                                    width: 48.w,
+                                    height: 48.h,
+                                    child: ClipOval(
+                                      child: CachedNetworkImage(
+                                        cacheManager: MyCacheManager.instance,
+                                        imageUrl:
+                                            user.profilePick ??
+                                            "https://dummyimage.com/100x100",
+                                        fit: BoxFit.cover,
+                                        errorWidget: (context, url, error) =>
+                                            const CircleAvatar(
+                                              child: Icon(Icons.error),
                                             ),
-                                          ),
+                                        progressIndicatorBuilder:
+                                            (context, url, progress) => Center(
+                                              child: Shimmer.fromColors(
+                                                baseColor: Colors.grey[300]!,
+                                                highlightColor:
+                                                    Colors.grey[100]!,
+                                                child: CircleAvatar(
+                                                  radius: 80.r,
+                                                ),
+                                              ),
+                                            ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                title: AppText(
-                                  title: user.fullName ?? '',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.sp,
-                                ),
-                                subtitle: AppText(
-                                  title: formatted,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 10.sp,
-                                ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Image.asset(
-                                      AppImage.dollar,
-                                      height: 20.h,
-                                      width: 20.w,
-                                    ),
-                                    SizedBox(width: 4.w),
-                                    AppText(
-                                      title: product.amount?.toString() ?? '0',
-                                      color: Colors.red,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ],
+                                  title: AppText(
+                                    title: user.fullName ?? '',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                  ),
+                                  subtitle: AppText(
+                                    title: formatted,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10.sp,
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        AppImage.dollar,
+                                        height: 20.h,
+                                        width: 20.w,
+                                      ),
+                                      SizedBox(width: 4.w),
+                                      AppText(
+                                        title:
+                                            product.amount?.toString() ?? '0',
+                                        color: Colors.red,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -170,60 +185,74 @@ class WithDrawaHistory extends StatelessWidget {
 
                               final product = reversedList[index];
 
-                              return ListTile(
-                                leading: SizedBox(
-                                  width: 48.w,
-                                  height: 48.h,
-                                  child: ClipOval(
-                                    child: CachedNetworkImage(
-                                      cacheManager: MyCacheManager.instance,
-                                      imageUrl:
-                                          HomeCubit.reusableUser.profilePick ??
-                                          "https://dummyimage.com/100x100",
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, url, error) =>
-                                          const CircleAvatar(
-                                            child: Icon(Icons.error),
-                                          ),
-                                      progressIndicatorBuilder:
-                                          (context, url, progress) => Center(
-                                            child: Shimmer.fromColors(
-                                              baseColor: Colors.grey[300]!,
-                                              highlightColor: Colors.grey[100]!,
-                                              child: CircleAvatar(radius: 80.r),
+                              return ListTileTheme(
+                                dense: true, // 👈 isse height kam ho jayegi
+                                horizontalTitleGap: 8
+                                    .w, // 👈 yeh title aur leading ka gap control karega
+                                child: ListTile(
+                                  contentPadding: EdgeInsets
+                                      .zero, // ✅ remove left-right padding
+
+                                  leading: SizedBox(
+                                    width: 48.w,
+                                    height: 48.h,
+                                    child: ClipOval(
+                                      child: CachedNetworkImage(
+                                        cacheManager: MyCacheManager.instance,
+                                        imageUrl:
+                                            HomeCubit
+                                                .reusableUser
+                                                .profilePick ??
+                                            "https://dummyimage.com/100x100",
+                                        fit: BoxFit.cover,
+                                        errorWidget: (context, url, error) =>
+                                            const CircleAvatar(
+                                              child: Icon(Icons.error),
                                             ),
-                                          ),
+                                        progressIndicatorBuilder:
+                                            (context, url, progress) => Center(
+                                              child: Shimmer.fromColors(
+                                                baseColor: Colors.grey[300]!,
+                                                highlightColor:
+                                                    Colors.grey[100]!,
+                                                child: CircleAvatar(
+                                                  radius: 80.r,
+                                                ),
+                                              ),
+                                            ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                title: AppText(
-                                  title: product.productName ?? '',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14.sp,
-                                ),
-                                subtitle: AppText(
-                                  title: product.categoryName?.toString() ?? '',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 10.sp,
-                                ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Image.asset(
-                                      AppImage.dollar,
-                                      height: 20.h,
-                                      width: 20.w,
-                                    ),
-                                    SizedBox(width: 4.w),
-                                    AppText(
-                                      title:
-                                          product.coinsEarned?.toString() ??
-                                          '0',
-                                      color: Colors.green,
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ],
+                                  title: AppText(
+                                    title: product.productName ?? '',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.sp,
+                                  ),
+                                  subtitle: AppText(
+                                    title:
+                                        product.categoryName?.toString() ?? '',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 10.sp,
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        AppImage.dollar,
+                                        height: 20.h,
+                                        width: 20.w,
+                                      ),
+                                      SizedBox(width: 4.w),
+                                      AppText(
+                                        title:
+                                            product.coinsEarned?.toString() ??
+                                            '0',
+                                        color: Colors.green,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },

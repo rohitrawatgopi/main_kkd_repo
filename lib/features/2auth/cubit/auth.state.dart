@@ -27,3 +27,17 @@ class TermsCheckorNotState extends AuthState {
   final bool istermsChecked;
   TermsCheckorNotState(this.istermsChecked);
 }
+
+class DeletAccountLoadingState extends AuthState {}
+
+class DeletAccountSuccessState extends AuthState {
+  final String msg;
+
+  DeletAccountSuccessState({required this.msg});
+}
+
+class DeletAccountFailState extends AuthState {
+  final String msg;
+
+  DeletAccountFailState({required this.msg});
+}

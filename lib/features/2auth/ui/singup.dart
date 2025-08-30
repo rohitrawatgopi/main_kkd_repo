@@ -46,9 +46,10 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(statusBarColor: AppColors.appColor),
-      child: Scaffold(
-        body: SafeArea(
-          child: Container(
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          body: Container(
             height: double.infinity,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -123,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               keyBoardType: TextInputType.emailAddress,
                               validator: MultiValidator([
                                 MaxLengthValidator(
-                                  50,
+                                  25,
                                   errorText: "Email too long",
                                 ),
                                 EmailValidator(
@@ -241,75 +242,71 @@ class _SignupScreenState extends State<SignupScreen> {
                           ],
                         ),
                       ),
-
-                      Center(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            BlocBuilder<AuthCubit, AuthState>(
-                              builder: (context, state) {
-                                final cubit = context.read<AuthCubit>();
-                                return Checkbox(
-                                  value: cubit.istermsChecked,
-                                  onChanged: (val) {
-                                    context.read<AuthCubit>().toggleTerms();
-                                  },
-                                );
-                              },
-                            ),
-                            Expanded(
-                              child: RichText(
-                                textAlign: TextAlign.start,
-                                text: TextSpan(
-                                  text: "I agree to the ",
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: Colors.black87,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: "Terms & Conditions",
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          launchUrl(
-                                            Uri.parse(
-                                              ApiEndpoints.termsPrivacy,
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                    const TextSpan(text: " and "),
-                                    TextSpan(
-                                      text: "Privacy Policy",
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          launchUrl(
-                                            Uri.parse(
-                                              ApiEndpoints.termsPrivacy,
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
+                      Gap(13.h),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Gap(15.w),
+                          BlocBuilder<AuthCubit, AuthState>(
+                            builder: (context, state) {
+                              final cubit = context.read<AuthCubit>();
+                              return Checkbox(
+                                value: cubit.istermsChecked,
+                                onChanged: (val) {
+                                  context.read<AuthCubit>().toggleTerms();
+                                },
+                              );
+                            },
+                          ),
+                          Expanded(
+                            child: RichText(
+                              textAlign: TextAlign.start,
+                              text: TextSpan(
+                                text: "I agree to the ",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: Colors.black87,
                                 ),
+                                children: [
+                                  TextSpan(
+                                    text: "Terms & Conditions",
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        launchUrl(
+                                          Uri.parse(ApiEndpoints.termsPrivacy),
+                                        );
+                                      },
+                                  ),
+                                  const TextSpan(text: " and "),
+                                  TextSpan(
+                                    text: "Privacy Policy",
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        launchUrl(
+                                          Uri.parse(ApiEndpoints.termsPrivacy),
+                                        );
+                                      },
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Column(
                         children: [
+                          Gap(30.h),
                           BlocBuilder<AuthCubit, AuthState>(
                             builder: (context, state) {
                               if (state is AuthLoading) {

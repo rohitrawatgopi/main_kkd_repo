@@ -12,11 +12,12 @@ class WithdrawScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<WithDrawCubit, WithDrawState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is WithDrawFailure) {
           AppToast.error(state.message);
         } else if (state is WithDrawSuccess) {
           context.read<WithDrawCubit>().getPandingWithdrawl();
+          await context.read<HomeCubit>().userDetails();
           AppToast.success(state.message);
           coinController.text = "";
         }
@@ -28,6 +29,8 @@ class WithdrawScreen extends StatelessWidget {
       child: HomeCubit.reusableUser.coinsEarned == null
           ? Center(child: AppText(title: "Something went wrong "))
           : AppContainer(
+              left: 0,
+              right: 0,
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,7 +86,7 @@ class WithdrawScreen extends StatelessWidget {
                       letterSpacing: 0.2,
                       fontWeight: FontWeight.w500,
                     ),
-                    Gap(26.h),
+                    Gap(46.h),
                     AppText(
                       title: AppLocalizations.of(
                         context,
@@ -97,12 +100,12 @@ class WithdrawScreen extends StatelessWidget {
                     Gap(40.h),
 
                     Container(
+                      margin: EdgeInsets.only(left: 16.w, right: 16.w),
                       padding: EdgeInsets.symmetric(
                         horizontal: 24.w,
                         vertical: 32.h,
                       ),
-                      height: 267.h,
-                      width: 327.w,
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24.r),
                         gradient: LinearGradient(
@@ -134,6 +137,8 @@ class WithdrawScreen extends StatelessWidget {
                           ),
                           Gap(7.h),
                           AppTextField(
+                            borderRadius: 8.r,
+
                             controller: coinController,
                             height: 40.h,
                             width: 279.w,
@@ -232,112 +237,114 @@ class WithdrawScreen extends StatelessWidget {
                               state.pandingList;
                           final List<WithdrawalModel> reversedList =
                               pendingWithdrawl.reversed.toList();
-                          return SizedBox(
-                            height: 200.h,
-                            child: reversedList.isEmpty
-                                ? AppText(title: "Pending request is empty")
-                                : Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      AppText(
-                                        fontSize: 12.sp,
+                          return reversedList.isEmpty
+                              ? AppText(title: "Pending request is empty")
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsGeometry.only(
+                                        left: 8.w,
+                                      ),
+                                      child: AppText(
+                                        fontSize: 16.sp,
                                         fontWeight: FontWeight.w700,
                                         title:
                                             "Total Pending Reguest ${reversedList.length.toString()}",
                                       ),
-                                      Gap(10.h),
-                                      Expanded(
-                                        child: ListView.builder(
-                                          physics:
-                                              const BouncingScrollPhysics(),
-                                          itemCount: reversedList.length,
-                                          itemBuilder: (context, index) {
-                                            final dateTime = DateTime.parse(
-                                              reversedList[index].requestedAt
-                                                  .toString(),
-                                            );
-                                            String formatted = DateFormat(
-                                              'dd MMMM yyyy',
-                                            ).format(dateTime);
+                                    ),
+                                    Gap(10.h),
+                                    SizedBox(
+                                      height: 446.h,
+                                      child: ListView.builder(
+                                        padding: EdgeInsets.only(top: 0.h),
+                                        physics: const BouncingScrollPhysics(),
+                                        itemCount: reversedList.length,
+                                        itemBuilder: (context, index) {
+                                          final dateTime = DateTime.parse(
+                                            reversedList[index].requestedAt
+                                                .toString(),
+                                          );
+                                          String formatted = DateFormat(
+                                            'dd MMMM yyyy',
+                                          ).format(dateTime);
 
-                                            return ListTile(
-                                              leading: SizedBox(
-                                                width: 48.w,
-                                                height: 48.h,
-                                                child: ClipOval(
-                                                  child: CachedNetworkImage(
-                                                    cacheManager:
-                                                        MyCacheManager.instance,
-                                                    imageUrl:
-                                                        user.profilePick ??
-                                                        "https://dummyimage.com/100x100",
-                                                    fit: BoxFit.cover,
-                                                    errorWidget:
-                                                        (context, url, error) =>
-                                                            CircleAvatar(
-                                                              child: Icon(
-                                                                Icons.error,
-                                                              ),
-                                                            ),
-                                                    progressIndicatorBuilder:
-                                                        (
-                                                          context,
-                                                          url,
-                                                          progress,
-                                                        ) => Center(
-                                                          child: Shimmer.fromColors(
-                                                            baseColor: Colors
-                                                                .grey[300]!,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .grey[100]!,
-                                                            child: CircleAvatar(
-                                                              radius: 80.r,
+                                          return ListTile(
+                                            leading: SizedBox(
+                                              width: 48.w,
+                                              height: 48.h,
+                                              child: ClipOval(
+                                                child: CachedNetworkImage(
+                                                  cacheManager:
+                                                      MyCacheManager.instance,
+                                                  imageUrl:
+                                                      user.profilePick ??
+                                                      "https://dummyimage.com/100x100",
+                                                  fit: BoxFit.cover,
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          CircleAvatar(
+                                                            child: Icon(
+                                                              Icons.error,
                                                             ),
                                                           ),
+                                                  progressIndicatorBuilder:
+                                                      (
+                                                        context,
+                                                        url,
+                                                        progress,
+                                                      ) => Center(
+                                                        child: Shimmer.fromColors(
+                                                          baseColor:
+                                                              Colors.grey[300]!,
+                                                          highlightColor:
+                                                              Colors.grey[100]!,
+                                                          child: CircleAvatar(
+                                                            radius: 80.r,
+                                                          ),
                                                         ),
-                                                  ),
+                                                      ),
                                                 ),
                                               ),
-                                              title: AppText(
-                                                title:
-                                                    reversedList[index].user ??
-                                                    '',
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14.sp,
-                                              ),
-                                              subtitle: AppText(
-                                                title: formatted,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10.sp,
-                                              ),
-                                              trailing: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Image.asset(
-                                                    AppImage.dollar,
-                                                    height: 20.h,
-                                                    width: 20.w,
-                                                  ),
-                                                  SizedBox(width: 4.w),
-                                                  AppText(
-                                                    title: reversedList[index]
-                                                        .amount
-                                                        .toString(),
-                                                    color: Colors.red,
-                                                    fontSize: 14.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                            ),
+                                            title: AppText(
+                                              title: user.fullName ?? '',
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14.sp,
+                                              maxLine: 1,
+                                              textOverflow:
+                                                  TextOverflow.ellipsis,
+                                            ),
+                                            subtitle: AppText(
+                                              title: formatted,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 10.sp,
+                                            ),
+                                            trailing: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Image.asset(
+                                                  AppImage.dollar,
+                                                  height: 20.h,
+                                                  width: 20.w,
+                                                ),
+                                                SizedBox(width: 4.w),
+                                                AppText(
+                                                  title: reversedList[index]
+                                                      .amount
+                                                      .toString(),
+                                                  color: Colors.red,
+                                                  fontSize: 14.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
-                                    ],
-                                  ),
-                          );
+                                    ),
+                                  ],
+                                );
                         }
 
                         return Gap(1);

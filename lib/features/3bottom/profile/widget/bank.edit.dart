@@ -80,7 +80,7 @@ class UdateBankScreen extends StatelessWidget {
           child: Form(
             key: _formKey,
             child: Column(
-              spacing: 8.h,
+              spacing: 10.h,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -114,6 +114,7 @@ class UdateBankScreen extends StatelessWidget {
                 Gap(5.h),
                 // Bank Account Number
                 AppTextField(
+                  labelText: AppLocalizations.of(context)!.accountNumber,
                   controller: accountNumberController,
                   keyBoardType: TextInputType.number,
                   validator: MultiValidator([
@@ -138,6 +139,7 @@ class UdateBankScreen extends StatelessWidget {
 
                 // Mobile Number (Account Holder)
                 AppTextField(
+                  labelText: AppLocalizations.of(context)!.accountHolder,
                   controller: accounHolderController,
                   keyBoardType: TextInputType.name,
                   hintText: AppLocalizations.of(context)!.accountHolder,
@@ -191,6 +193,7 @@ class UdateBankScreen extends StatelessWidget {
 
                 // Pin Code
                 AppTextField(
+                  labelText: AppLocalizations.of(context)!.ifsc,
                   controller: IFSCController,
 
                   hintText: AppLocalizations.of(context)!.ifsc,
