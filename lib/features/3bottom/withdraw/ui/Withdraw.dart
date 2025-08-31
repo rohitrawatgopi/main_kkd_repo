@@ -238,7 +238,11 @@ class WithdrawScreen extends StatelessWidget {
                           final List<WithdrawalModel> reversedList =
                               pendingWithdrawl.reversed.toList();
                           return reversedList.isEmpty
-                              ? AppText(title: "Pending request is empty")
+                              ? AppText(
+                                  title: AppLocalizations.of(
+                                    context,
+                                  )!.pendingrequestisempty,
+                                )
                               : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -250,7 +254,7 @@ class WithdrawScreen extends StatelessWidget {
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w700,
                                         title:
-                                            "Total Pending Reguest ${reversedList.length.toString()}",
+                                            "${AppLocalizations.of(context)!.totalPendingreguest} ${reversedList.length.toString()}",
                                       ),
                                     ),
                                     Gap(10.h),

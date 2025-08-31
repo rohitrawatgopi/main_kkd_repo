@@ -90,7 +90,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get pleasefillmobilenumber => 'कृपया मोबाइल नंबर भरें';
 
   @override
-  String get couldntfindanyavailablenetworks => 'कोई भी उपलब्ध नेटवर्क नहीं मिला';
+  String get couldntfindanyavailablenetworks => 'कोई उपलब्ध नेटवर्क नहीं मिला';
 
   @override
   String get nameisrequired => 'नाम आवश्यक है';
@@ -334,4 +334,88 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get qrCodeUsedMessage => '';
+
+  @override
+  String get settings => 'सेटिंग्स';
+
+  @override
+  String get username => 'यूज़रनेम';
+
+  @override
+  String get email => 'ईमेल';
+
+  @override
+  String get helpSupport => 'मदद और सहायता';
+
+  @override
+  String get privacypolicy => 'गोपनीयता नीति';
+
+  @override
+  String get deleteaccount => 'खाता हटाएँ';
+
+  @override
+  String get retry => 'फिर से कोशिश करें';
+
+  @override
+  String get noconnection => 'कोई कनेक्शन नहीं';
+
+  @override
+  String get pleasecheckyourinternetconnectivityandtryagain => 'कृपया अपना इंटरनेट कनेक्शन जाँचें \n और दोबारा कोशिश करें';
+
+  @override
+  String get namemustbelessthancharacters => 'नाम 50 अक्षरों से कम होना चाहिए';
+
+  @override
+  String get emailtoolong => 'ईमेल बहुत लंबा है';
+
+  @override
+  String get required => 'ज़रूरी';
+
+  @override
+  String get mincharacters => 'कम से कम 6 अक्षर';
+
+  @override
+  String get iagreetothe => 'I agree to the';
+
+  @override
+  String get and => 'और';
+
+  @override
+  String get language => 'भाषा';
+
+  @override
+  String get withdrawhistoryisempty => 'निकासी इतिहास खाली है';
+
+  @override
+  String get totalPendingreguest => 'कुल लंबित अनुरोध';
+
+  @override
+  String get scanhistoryisempty => 'स्कैन इतिहास खाली है';
+
+  @override
+  String get delete => 'हटाएं';
+
+  @override
+  String get callus => 'हमसे 24*7 संपर्क करें';
+
+  @override
+  String get pendingrequestisempty => 'लंबित अनुरोध खाली है';
+
+  @override
+  String get close => 'बंद करें';
+
+  @override
+  String get withdrawhistory => 'निकासी इतिहास';
+
+  @override
+  String get scanhistory => 'स्कैन इतिहास';
+
+  @override
+  String get emailusyourqueries => 'हमें अपने सवाल ईमेल करें';
+
+  @override
+  String get termsconditions => 'नियम और शर्तें';
+
+  @override
+  String get areyousuretodelteaccount => 'क्या आप वाकई अपना खाता हटाना चाहते हैं?\n\nअगर आप 7 दिनों तक लॉगिन नहीं करते, तो आपका खाता और उससे जुड़ा सारा डेटा स्थायी रूप से हटा दिया जाएगा।\n\nअगर आप 7 दिनों के अंदर दोबारा लॉगिन करते हैं, तो हटाने का अनुरोध अपने आप रद्द हो जाएगा।';
 }

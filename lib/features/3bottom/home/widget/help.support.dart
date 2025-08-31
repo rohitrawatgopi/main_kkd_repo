@@ -1,4 +1,5 @@
 import 'package:paint_shop/app/import.dart';
+import 'package:paint_shop/l10n/app_localizations.dart';
 import 'package:paint_shop/utils/url_launcher.dart';
 
 void showHelpSupportDialog(BuildContext context) {
@@ -10,13 +11,13 @@ void showHelpSupportDialog(BuildContext context) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.appColor,
         title: Row(
           children: [
             Icon(Icons.support_agent, color: Colors.blueAccent),
             SizedBox(width: 8.w),
             AppText(
-              title: "Help & Support",
+              title: AppLocalizations.of(context)!.helpSupport,
               fontWeight: FontWeight.bold,
               fontSize: 18.sp,
             ),
@@ -36,7 +37,7 @@ void showHelpSupportDialog(BuildContext context) {
                   fontSize: 14.sp,
                 ),
                 subtitle: AppText(
-                  title: "Email us your queries",
+                  title: AppLocalizations.of(context)!.emailusyourqueries,
                   fontSize: 14.sp,
                 ),
               ),
@@ -49,7 +50,10 @@ void showHelpSupportDialog(BuildContext context) {
               child: ListTile(
                 leading: Icon(Icons.phone, color: Colors.green),
                 title: AppText(title: "+91 8077755976", fontSize: 14.sp),
-                subtitle: AppText(title: "Call us 24*7", fontSize: 14.sp),
+                subtitle: AppText(
+                  title: AppLocalizations.of(context)!.callus,
+                  fontSize: 14.sp,
+                ),
               ),
             ),
           ],
@@ -57,7 +61,10 @@ void showHelpSupportDialog(BuildContext context) {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: AppText(title: "Close", color: Colors.blueAccent),
+            child: AppText(
+              title: AppLocalizations.of(context)!.close,
+              color: Colors.blueAccent,
+            ),
           ),
         ],
       );

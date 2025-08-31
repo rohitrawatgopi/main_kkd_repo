@@ -62,9 +62,9 @@ class WithDrawaHistory extends StatelessWidget {
                 labelColor: Colors.black,
                 unselectedLabelColor: Colors.black54,
                 indicatorColor: Colors.black,
-                tabs: const [
-                  Tab(text: "Withdraw History"),
-                  Tab(text: "Scan History"),
+                tabs: [
+                  Tab(text: AppLocalizations.of(context)!.withdrawhistory),
+                  Tab(text: AppLocalizations.of(context)!.scanhistory),
                 ],
               ),
               Expanded(
@@ -74,7 +74,11 @@ class WithDrawaHistory extends StatelessWidget {
                     (HomeCubit.reusableUser.withdrawalHistory == null ||
                             HomeCubit.reusableUser.withdrawalHistory!.isEmpty)
                         ? Center(
-                            child: AppText(title: "Withdraw History is empty"),
+                            child: AppText(
+                              title: AppLocalizations.of(
+                                context,
+                              )!.withdrawhistoryisempty,
+                            ),
                           )
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
@@ -171,7 +175,13 @@ class WithDrawaHistory extends StatelessWidget {
                     // ✅ Scan History
                     (HomeCubit.reusableUser.scanHistory == null ||
                             HomeCubit.reusableUser.scanHistory!.isEmpty)
-                        ? Center(child: AppText(title: "Scan History is empty"))
+                        ? Center(
+                            child: AppText(
+                              title: AppLocalizations.of(
+                                context,
+                              )!.scanhistoryisempty,
+                            ),
+                          )
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             itemCount:

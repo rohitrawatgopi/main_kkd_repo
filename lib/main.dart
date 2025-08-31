@@ -76,10 +76,12 @@ class MyApp extends StatelessWidget {
                           backgroundColor: Colors.red.shade600,
                           duration: const Duration(seconds: 1),
                           content: AppText(
-                            title: "Couldn't find any available networks",
+                            title: AppLocalizations.of(
+                              context,
+                            )!.couldntfindanyavailablenetworks,
                           ),
                           action: SnackBarAction(
-                            label: "Retry",
+                            label: AppLocalizations.of(context)!.retry,
                             textColor: Colors.white,
                             onPressed: () {
                               context.read<NetworkCubit>().checkConnection();

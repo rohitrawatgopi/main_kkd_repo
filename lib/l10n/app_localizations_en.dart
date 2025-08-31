@@ -334,4 +334,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qrCodeUsedMessage => '';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get helpSupport => 'Help & Support';
+
+  @override
+  String get privacypolicy => 'Privacy Policy';
+
+  @override
+  String get deleteaccount => 'Delete Account';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get noconnection => 'No Connection';
+
+  @override
+  String get pleasecheckyourinternetconnectivityandtryagain => 'Please check your internet connectivity \n and try again';
+
+  @override
+  String get namemustbelessthancharacters => 'Name must be less than 50 characters';
+
+  @override
+  String get emailtoolong => 'Email too long';
+
+  @override
+  String get required => 'Required';
+
+  @override
+  String get mincharacters => 'Min 6 characters';
+
+  @override
+  String get iagreetothe => 'I agree to the';
+
+  @override
+  String get and => 'and';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get withdrawhistoryisempty => 'Withdraw History is empty';
+
+  @override
+  String get totalPendingreguest => 'Total Pending Reguest';
+
+  @override
+  String get scanhistoryisempty => 'Scan History is empty';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get callus => 'Call us 24*7';
+
+  @override
+  String get pendingrequestisempty => 'Pending request is empty';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get withdrawhistory => 'Withdraw History';
+
+  @override
+  String get scanhistory => 'Scan History';
+
+  @override
+  String get emailusyourqueries => 'Email us your queries';
+
+  @override
+  String get termsconditions => 'Terms & Conditions';
+
+  @override
+  String get areyousuretodelteaccount => 'Are you sure you want to delete your account?\n\nIf you do not log in within 7 days, your account and all associated data will be permanently deleted.\n\nIf you log in again before 7 days, the deletion request will be cancelled automatically.';
 }

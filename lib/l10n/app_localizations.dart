@@ -748,6 +748,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **''**
   String get qrCodeUsedMessage;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @helpSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpSupport;
+
+  /// No description provided for @privacypolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacypolicy;
+
+  /// No description provided for @deleteaccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteaccount;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @noconnection.
+  ///
+  /// In en, this message translates to:
+  /// **'No Connection'**
+  String get noconnection;
+
+  /// No description provided for @pleasecheckyourinternetconnectivityandtryagain.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your internet connectivity \n and try again'**
+  String get pleasecheckyourinternetconnectivityandtryagain;
+
+  /// No description provided for @namemustbelessthancharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be less than 50 characters'**
+  String get namemustbelessthancharacters;
+
+  /// No description provided for @emailtoolong.
+  ///
+  /// In en, this message translates to:
+  /// **'Email too long'**
+  String get emailtoolong;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @mincharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Min 6 characters'**
+  String get mincharacters;
+
+  /// No description provided for @iagreetothe.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to the'**
+  String get iagreetothe;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **'and'**
+  String get and;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @withdrawhistoryisempty.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw History is empty'**
+  String get withdrawhistoryisempty;
+
+  /// No description provided for @totalPendingreguest.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Pending Reguest'**
+  String get totalPendingreguest;
+
+  /// No description provided for @scanhistoryisempty.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan History is empty'**
+  String get scanhistoryisempty;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @callus.
+  ///
+  /// In en, this message translates to:
+  /// **'Call us 24*7'**
+  String get callus;
+
+  /// No description provided for @pendingrequestisempty.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending request is empty'**
+  String get pendingrequestisempty;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @withdrawhistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw History'**
+  String get withdrawhistory;
+
+  /// No description provided for @scanhistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan History'**
+  String get scanhistory;
+
+  /// No description provided for @emailusyourqueries.
+  ///
+  /// In en, this message translates to:
+  /// **'Email us your queries'**
+  String get emailusyourqueries;
+
+  /// No description provided for @termsconditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Conditions'**
+  String get termsconditions;
+
+  /// No description provided for @areyousuretodelteaccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete your account?\n\nIf you do not log in within 7 days, your account and all associated data will be permanently deleted.\n\nIf you log in again before 7 days, the deletion request will be cancelled automatically.'**
+  String get areyousuretodelteaccount;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

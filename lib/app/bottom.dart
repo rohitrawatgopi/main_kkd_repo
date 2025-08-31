@@ -145,7 +145,7 @@ class InternetBanner extends StatelessWidget {
                 ),
                 Gap(20.h),
                 AppText(
-                  title: "No Connection ",
+                  title: AppLocalizations.of(context)!.noconnection,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -156,8 +156,9 @@ class InternetBanner extends StatelessWidget {
                   textAlign: TextAlign.center,
                   fontWeight: FontWeight.w300,
                   letterSpacing: .1,
-                  title:
-                      "Please check your internet connectivity \n and try again",
+                  title: AppLocalizations.of(
+                    context,
+                  )!.pleasecheckyourinternetconnectivityandtryagain,
                 ),
                 Gap(40.h),
                 AppButton(
@@ -168,7 +169,7 @@ class InternetBanner extends StatelessWidget {
                   onPressed: () {
                     context.read<NetworkCubit>().checkConnection();
                   },
-                  title: "Retry",
+                  title: AppLocalizations.of(context)!.retry,
                 ),
               ],
             ),

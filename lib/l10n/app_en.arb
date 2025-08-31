@@ -110,25 +110,40 @@
   "purchasingPoints": "Purchasing Points: ",
   "hyundaiCretaPetrol": "Hyundai Creta (E 1.5 petrol is available in Manual transmission.",
   "qrCodeUsedMessage": "" ,
-  "settings":"Settings",
-  "username":"Username",
-  "email":"Email",
-  "helpSupport":"Help & Support",
-  "privacypolicy":"Privacy Policy",
-  "deleteaccount":"Delete Account",
-  "couldntfindanyavailablenetworks":"Couldn't find any available networks",
-  "retry":"Retry",
-  "noconnection":"No Connection",
-  "pleasecheckyourinternetconnectivityandtryagain":"Please check your internet connectivity \n and try again"
-  "namemustbelessthancharacters":"Name must be less than 50 characters",
-  "emailtoolong":"Email too long",
-  "required":"Required",
-  "mincharacters":"Min 6 characters",
-  "iagreetothe ":"I agree to the",
-  "and":"and",
-  "emailusyourqueries":"Email us your queries",
-  "areyousuretodelteaccount":"Are you sure you want to delete your account?\n\nIf you do not log in within 7 days, your account and all associated data will be permanently deleted.\n\nIf you log in again before 7 days, the deletion request will be cancelled automatically.",
-  "deleteaccount":"Delete Account",
- 
+  "settings": "Settings",
+  "username": "Username",
+  "email": "Email",
+  "helpSupport": "Help & Support",
+  "privacypolicy": "Privacy Policy",
+  "deleteaccount": "Delete Account",
+  "couldntfindanyavailablenetworks": "Couldn't find any available networks",
+  "retry": "Retry",
+  "noconnection": "No Connection",
+  "pleasecheckyourinternetconnectivityandtryagain": "Please check your internet connectivity \n and try again",
+  "namemustbelessthancharacters": "Name must be less than 50 characters",
+  "emailtoolong": "Email too long",
+  "required": "Required",
+  "mincharacters": "Min 6 characters",
+  "iagreetothe": "I agree to the ",
+  "and": " and ",
+  "language": "Language",
+
+
+  "withdrawhistoryisempty": "Withdraw History is empty",
+  "totalPendingreguest": "Total Pending Reguest",
+   "scanhistoryisempty":  "Scan History is empty",
+
+
+
+  "delete": "Delete",
+  "callus": "Call us 24*7",
+  "pendingrequestisempty": "Pending request is empty",
+  "close": "Close",
+  "withdrawhistory": "Withdraw History",
+  "scanhistory": "Scan History",
   
+  "emailusyourqueries": "Email us your queries",
+  "termsconditions": "Terms & Conditions",
+  "areyousuretodelteaccount": "Are you sure you want to delete your account?\n\nIf you do not log in within 7 days, your account and all associated data will be permanently deleted.\n\nIf you log in again before 7 days, the deletion request will be cancelled automatically."
+
 }

@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:paint_shop/core/network/api_endpoints.dart';
 import 'package:paint_shop/core/services/token.hive.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   late final Dio _dio;
@@ -27,13 +27,19 @@ class DioClient {
       }
       ..options.responseType = ResponseType.json
       ..interceptors.add(
-        PrettyDioLogger(
-          compact: false,
-          logPrint: (object) => log(object.toString(), name: 'TMDB API'),
+        RetryInterceptor(
+          dio: _dio,
+          logPrint: print, // optional logs
+          retries: 3, // kitni baar retry karna hai
+          retryDelays: const [
+            Duration(seconds: 2),
+            Duration(seconds: 4),
+            Duration(seconds: 6),
+          ],
         ),
       )
-      ..options.connectTimeout = const Duration(milliseconds: 100000)
-      ..options.receiveTimeout = const Duration(milliseconds: 100000);
+      ..options.connectTimeout = const Duration(seconds: 10)
+      ..options.receiveTimeout = const Duration(seconds: 30);
   }
 
   /// * GET

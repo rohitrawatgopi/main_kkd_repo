@@ -101,8 +101,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               validator: MultiValidator([
                                 MaxLengthValidator(
                                   50,
-                                  errorText:
-                                      "Name must be less than 50 characters",
+                                  errorText: AppLocalizations.of(
+                                    context,
+                                  )!.namemustbelessthancharacters,
                                 ),
                                 RequiredValidator(
                                   errorText: AppLocalizations.of(
@@ -125,7 +126,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               validator: MultiValidator([
                                 MaxLengthValidator(
                                   25,
-                                  errorText: "Email too long",
+                                  errorText: AppLocalizations.of(
+                                    context,
+                                  )!.emailtoolong,
                                 ),
                                 EmailValidator(
                                   errorText: AppLocalizations.of(
@@ -191,7 +194,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                     RequiredValidator(errorText: 'Required'),
                                     MinLengthValidator(
                                       6,
-                                      errorText: 'Min 6 characters',
+                                      errorText: AppLocalizations.of(
+                                        context,
+                                      )!.mincharacters,
                                     ),
                                   ]).call,
                                   hintText: AppLocalizations.of(
@@ -263,14 +268,16 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: RichText(
                               textAlign: TextAlign.start,
                               text: TextSpan(
-                                text: "I agree to the ",
+                                text: AppLocalizations.of(context)!.iagreetothe,
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Colors.black87,
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: "Terms & Conditions",
+                                    text: AppLocalizations.of(
+                                      context,
+                                    )!.termsconditions,
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Colors.blue,
@@ -283,9 +290,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                         );
                                       },
                                   ),
-                                  const TextSpan(text: " and "),
                                   TextSpan(
-                                    text: "Privacy Policy",
+                                    text: AppLocalizations.of(context)!.and,
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(
+                                      context,
+                                    )!.privacypolicy,
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Colors.blue,

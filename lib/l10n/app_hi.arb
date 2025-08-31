@@ -123,12 +123,27 @@
   "pleasecheckyourinternetconnectivityandtryagain": "कृपया अपना इंटरनेट कनेक्शन जाँचें \n और दोबारा कोशिश करें",
   "namemustbelessthancharacters": "नाम 50 अक्षरों से कम होना चाहिए",
   "emailtoolong": "ईमेल बहुत लंबा है",
+  "pendingrequestisempty": "लंबित अनुरोध खाली है",
+  "withdrawhistory": "निकासी इतिहास",
+  "scanhistory": "स्कैन इतिहास",
   "required": "ज़रूरी",
+  "withdrawhistoryisempty": "निकासी इतिहास खाली है",
+"totalPendingreguest": "कुल लंबित अनुरोध",
+"scanhistoryisempty": "स्कैन इतिहास खाली है",
+
+  "close": "बंद करें",
   "mincharacters": "कम से कम 6 अक्षर",
-  "iagreetothe ": "मैं सहमत हूँ",
-  "and": "और",
+  "iagreetothe ": " मैं सहमत हूँ ",
+  "and": " और ",
+  "callus": "हमसे 24*7 संपर्क करें",
   "emailusyourqueries": "हमें अपने सवाल ईमेल करें",
   "areyousuretodelteaccount": "क्या आप वाकई अपना खाता हटाना चाहते हैं?\n\nअगर आप 7 दिनों तक लॉगिन नहीं करते, तो आपका खाता और उससे जुड़ा सारा डेटा स्थायी रूप से हटा दिया जाएगा।\n\nअगर आप 7 दिनों के अंदर दोबारा लॉगिन करते हैं, तो हटाने का अनुरोध अपने आप रद्द हो जाएगा।",
-  "deleteaccount": "खाता हटाएँ"
+  "deleteaccount": "खाता हटाएँ",
+  "termsconditions": "नियम और शर्तें",
+  "language": "भाषा",
+  "delete": "हटाएं"
+
+
+
 
 }

@@ -15,7 +15,7 @@ class ApiEndpoints {
   static String withdraw = "api/user/create-withdrawal-req";
   static String offer = "api/user/get-offer-products";
   static String getPandingWithdrawl = "api/user/get-pending-withdrawals";
-  static String deleteAccount = "api/user/request-delete";
+  static String deleteAccount = "api/user/app/request-delete";
   static String termsPrivacy =
       "https://kkd-rgm5.onrender.com/terms-and-privacy";
 

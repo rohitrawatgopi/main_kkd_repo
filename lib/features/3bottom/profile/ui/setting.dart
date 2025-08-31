@@ -4,6 +4,7 @@ import 'package:paint_shop/features/3bottom/home/widget/help.support.dart';
 import 'package:paint_shop/features/3bottom/profile/widget/delete.account.dart';
 import 'package:paint_shop/features/3bottom/profile/widget/setting.widget.dart';
 import 'package:paint_shop/features/4lang/lang.cubit.dart';
+import 'package:paint_shop/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -37,7 +38,7 @@ class SettingScreen extends StatelessWidget {
               ),
               Gap(4.w),
               AppText(
-                title: "Settings",
+                title: AppLocalizations.of(context)!.settings,
                 fontWeight: FontWeight.w500,
                 fontSize: 20.sp,
               ),
@@ -45,9 +46,15 @@ class SettingScreen extends StatelessWidget {
           ),
 
           Gap(12.h),
-          SettingWidget(title: "Username", subtitle: user.fullName),
+          SettingWidget(
+            title: AppLocalizations.of(context)!.username,
+            subtitle: user.fullName,
+          ),
           Gap(12.h),
-          SettingWidget(title: "Email", subtitle: user.email),
+          SettingWidget(
+            title: AppLocalizations.of(context)!.email,
+            subtitle: user.email,
+          ),
           Gap(12.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +69,7 @@ class SettingScreen extends StatelessWidget {
                   ),
                   Gap(5.w),
                   AppText(
-                    title: "Language",
+                    title: AppLocalizations.of(context)!.language,
                     color: Colors.black,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
@@ -100,7 +107,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                     Gap(5.w),
                     AppText(
-                      title: "Help & Support",
+                      title: AppLocalizations.of(context)!.helpSupport,
                       color: Colors.black,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -134,7 +141,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                     Gap(5.w),
                     AppText(
-                      title: "Privacy Policy",
+                      title: AppLocalizations.of(context)!.privacypolicy,
                       color: Colors.black,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -167,7 +174,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                     Gap(5.w),
                     AppText(
-                      title: "Logout",
+                      title: AppLocalizations.of(context)!.logout,
                       color: Colors.black,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -199,7 +206,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                     Gap(5.w),
                     AppText(
-                      title: "Delete Account",
+                      title: AppLocalizations.of(context)!.deleteaccount,
                       color: Colors.black,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,

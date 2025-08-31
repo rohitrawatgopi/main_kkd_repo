@@ -13,7 +13,7 @@ void showDeleteAccount(BuildContext context) {
           SizedBox(width: 8),
           Expanded(
             child: AppText(
-              title: "Delete Account",
+              title: AppLocalizations.of(context)!.deleteaccount,
               fontWeight: FontWeight.bold,
               fontSize: 16.sp,
               maxLine: 2,
@@ -22,8 +22,7 @@ void showDeleteAccount(BuildContext context) {
         ],
       ),
       content: AppText(
-        title:
-            "Are you sure you want to delete your account?\n\nIf you do not log in within 7 days, your account and all associated data will be permanently deleted.\n\nIf you log in again before 7 days, the deletion request will be cancelled automatically.",
+        title: AppLocalizations.of(context)!.areyousuretodelteaccount,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -58,7 +57,7 @@ void showDeleteAccount(BuildContext context) {
 
                       return AppButton(
                         radius: 12,
-                        title: "Delete",
+                        title: AppLocalizations.of(context)!.delete,
                         color: Colors.red,
                         onPressed: () {
                           context.read<AuthCubit>().accountDelete();
