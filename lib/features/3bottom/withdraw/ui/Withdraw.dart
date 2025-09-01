@@ -1,3 +1,4 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/model/withdrawal.dart';
@@ -23,7 +24,7 @@ class WithdrawScreen extends StatelessWidget {
         }
 
         if (state is WithDrawLoading) {
-          CircularProgressIndicator();
+          SpinKitFadingCircle(color: Colors.purple, size: 50.0);
         }
       },
       child: HomeCubit.reusableUser.coinsEarned == null
@@ -229,7 +230,12 @@ class WithdrawScreen extends StatelessWidget {
                     BlocBuilder<WithDrawCubit, WithDrawState>(
                       builder: (context, state) {
                         if (state is getPandingLoadingRequest) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(
+                            child: SpinKitFadingCircle(
+                              color: Colors.purple,
+                              size: 50.0,
+                            ),
+                          );
                         }
                         if (state is getPandingSuccessRequest) {
                           final user = HomeCubit.reusableUser;

@@ -13,13 +13,12 @@ class HomeSuccess extends HomeState {
   final List<CategoryModel> Category;
   final UserModel user;
   final List<PromotionModel> prmotion;
-  int index = 0;
-
+  final int currentIndex;
   HomeSuccess({
     required this.Category,
     required this.user,
     required this.prmotion,
-    this.index = 0,
+    this.currentIndex = 0,
   });
 }
 

@@ -12,25 +12,33 @@ class searchProductScreen extends StatefulWidget {
 
 class _OfferProductSreenState extends State<searchProductScreen> {
   final ScrollController _scrollController = ScrollController();
-
   bool _isLoadingMore = true;
 
   @override
-  Widget build(BuildContext context) {
-    {
-      _scrollController.addListener(() {
-        if (_scrollController.position.pixels >=
-                _scrollController.position.maxScrollExtent - 100 &&
-            _isLoadingMore) {
-          context.read<ProductSearchCubit>().searchProduct("");
-        }
-      });
-    }
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+              _scrollController.position.maxScrollExtent &&
+          _isLoadingMore) {
+        context.read<ProductSearchCubit>().searchProduct(widget.screenName);
+      }
+    });
+  }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<ProductSearchCubit, ProductSearchSate>(
       builder: (context, state) {
         if (state is ProductSearchSuccess) {
           List<ProductModel> productList = state.products;
+          _isLoadingMore = state.paginationModel?.hasMore ?? false;
 
           return AppContainer(
             child: Column(
@@ -74,6 +82,7 @@ class _OfferProductSreenState extends State<searchProductScreen> {
                           context: context,
                           removeTop: true,
                           child: GridView.builder(
+                            controller: _scrollController,
                             itemCount: productList.length + 1,
 
                             gridDelegate:
@@ -92,11 +101,8 @@ class _OfferProductSreenState extends State<searchProductScreen> {
                                 );
                               } else {
                                 if (state.paginationModel!.hasMore != false) {
-                                  return Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16),
-                                      child: CircularProgressIndicator(),
-                                    ),
+                                  return const Center(
+                                    child: ProductCardShimmer(),
                                   );
                                 } else {
                                   return const Center(child: Gap(1));
@@ -111,35 +117,6 @@ class _OfferProductSreenState extends State<searchProductScreen> {
           );
         }
         return AllProductShimmer();
-        // return Container(
-        //   padding: EdgeInsets.all(8.h),
-        //   child: Column(
-        //     children: [
-        //       Gap(45.h),
-        //       AppSearchContainerShimmer(),
-
-        //       Gap(15.h),
-        //       Expanded(
-        //         child: MediaQuery.removePadding(
-        //           context: context,
-        //           removeTop: true,
-        //           child: GridView.builder(
-        //             controller: _scrollController,
-        //             itemCount: 6,
-        //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //               crossAxisCount: 2,
-        //               childAspectRatio: 0.8,
-        //               crossAxisSpacing: 5.w,
-        //             ),
-        //             itemBuilder: (context, index) {
-        //               return InkWell(onTap: () {}, child: ProductCardShimmer());
-        //             },
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // );
       },
     );
   }

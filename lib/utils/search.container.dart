@@ -18,58 +18,67 @@ class AppSearchContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _searchContoller = TextEditingController();
-    _performSearch(String value) {
-      context.read<ProductSearchCubit>().searchProduct(_searchContoller.text);
+    final TextEditingController searchContoller = TextEditingController();
+    performSearch(String value) {
+      ProductSearchCubit.page1 = 1;
+      context.read<ProductSearchCubit>().searchProduct(searchContoller.text);
 
-      context.push("/search", extra: _searchContoller.text);
-      _searchContoller.text = "";
+      context.push("/search", extra: searchContoller.text);
+      searchContoller.text = "";
     }
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
+
           children: [
             Container(
               width: 287.w,
               height: 40.h,
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(36.r),
               ),
-              padding: EdgeInsets.fromLTRB(0.w, 11.h, 0.w, 11.h),
+
               child: AppTextField(
-                hintStyle:
-                    TextStyle(
-                          fontSize: 15
-                              .sp, // fixed size (sp lekin system scaling ko ignore karega niche line se)
-                          color: Colors.black,
-                        )
-                        .copyWith(fontSize: 15.sp)
-                        .apply(
-                          fontSizeFactor:
-                              1 / MediaQuery.textScalerOf(context).scale(1.0),
-                        ),
+                textAlignVertical: TextAlignVertical.center,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 32.h,
+                ), // 👈 fix
+                textAlign: TextAlign.left,
+                bgColor: Colors.white,
+                hintStyle: TextStyle(
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
                 onFieldSubmitted: (val) async {
-                  _performSearch(val);
+                  if (searchContoller.text.isNotEmpty) {
+                    performSearch(searchContoller.text);
+                    FocusScope.of(
+                      context,
+                    ).unfocus(); // 👈 tap search par bhi focus hatana
+                  }
                 },
                 keyBoardType: TextInputType.webSearch,
                 prefixIcon: InkWell(
                   onTap: () {
-                    _performSearch(_searchContoller.text);
+                    if (searchContoller.text.isNotEmpty) {
+                      performSearch(searchContoller.text);
+                      FocusScope.of(
+                        context,
+                      ).unfocus(); // 👈 tap search par bhi focus hatana
+                    }
                   },
                   child: Icon(Icons.search, size: 20.w),
                 ),
-                controller: _searchContoller,
+                controller: searchContoller,
                 fontSize: 12.sp,
                 hintText: AppLocalizations.of(context)!.search,
                 isCollapsed: true,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 1,
-                  horizontal: 0.w,
-                ),
               ),
             ),
             Gap(10.w, color: Colors.transparent),

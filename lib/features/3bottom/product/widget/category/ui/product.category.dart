@@ -106,11 +106,8 @@ class _CategoryProductSreenState extends State<CategoryProductScreen> {
                                 );
                               } else {
                                 if (state.paginationModel!.hasMore != false) {
-                                  return Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(16),
-                                      child: CircularProgressIndicator(),
-                                    ),
+                                  return const Center(
+                                    child: ProductCardShimmer(),
                                   );
                                 } else {
                                   return ProductCardLast();

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/services/image_picker_service.dart';
@@ -93,7 +94,12 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
             BlocBuilder<ScannerCubit, ScannerState>(
               builder: (context, state) {
                 if (state is ScannerLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: SpinKitFadingCircle(
+                      color: Colors.purple,
+                      size: 50.0,
+                    ),
+                  );
                 }
                 return const SizedBox.shrink();
               },

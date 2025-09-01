@@ -1,3 +1,4 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.cubit.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.state.dart';
@@ -101,7 +102,10 @@ class _CategoryProductSreenState extends State<OfferScreen> {
                                     return Center(
                                       child: Padding(
                                         padding: EdgeInsets.all(16),
-                                        child: CircularProgressIndicator(),
+                                        child: SpinKitFadingCircle(
+                                          color: Colors.purple,
+                                          size: 50.0,
+                                        ),
                                       ),
                                     );
                                   } else {

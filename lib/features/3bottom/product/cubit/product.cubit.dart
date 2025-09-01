@@ -2,35 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paint_shop/core/model/product.dart' show ProductModel;
 import 'package:paint_shop/features/3bottom/product/cubit/product.state.dart';
 import 'package:paint_shop/features/repo/product.dart';
-import 'package:paint_shop/utils/dio.erro.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductInitial()) {
     getPageWise(page: 1);
   }
 
-  bool isFetching = false;
   List<ProductModel> allProducts = [];
   static int page1 = 1;
-
-  void getAllProducrt() async {
-    try {
-      emit(ProductLoading());
-      final response = await ProductRepo.getProducts();
-      if (response.success == true) {
-        final products = (response.data as List)
-            .map((e) => ProductModel.fromJson(e))
-            .toList();
-
-        emit(ProductSuccess(products, response.pagination));
-      } else {
-        emit(ProductFailure(response.message!));
-      }
-    } catch (e) {
-      final msg = DioErrorHandler.getErrorMessage(e);
-      emit(ProductFailure(msg));
-    }
-  }
 
   void getPageWise({int limit = 10, int? page}) async {
     try {
@@ -61,5 +40,22 @@ class ProductCubit extends Cubit<ProductState> {
     } catch (e) {
       emit(ProductFailure(e.toString()));
     }
-  }
+  } /*  void getAllProducrt() async {
+    try {
+      emit(ProductLoading());
+      final response = await ProductRepo.getProducts();
+      if (response.success == true) {
+        final products = (response.data as List)
+            .map((e) => ProductModel.fromJson(e))
+            .toList();
+
+        emit(ProductSuccess(products, response.pagination));
+      } else {
+        emit(ProductFailure(response.message!));
+      }
+    } catch (e) {
+      final msg = DioErrorHandler.getErrorMessage(e);
+      emit(ProductFailure(msg));
+    }
+  }*/
 }

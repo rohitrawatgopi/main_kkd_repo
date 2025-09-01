@@ -10,6 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   UserModel? _user;
   List<CategoryModel>? _categories;
   List<PromotionModel>? _prmotion;
+
   static List<CategoryModel> resuableCategory = [];
   static UserModel reusableUser = UserModel();
 
@@ -107,8 +108,7 @@ class HomeCubit extends Cubit<HomeState> {
 
         reusableUser = _user!;
         resuableCategory = _categories!;
-        print(reusableUser.coinsEarned.toString());
-        print(_user!.coinsEarned.toString());
+
         emit(
           HomeSuccess(
             user: _user!,
@@ -122,5 +122,20 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       emit(HomeFailure("Something went wrong: $e"));
     }
+  }
+
+  void toggleIndex(int index) {
+    if (state is HomeSuccess) {
+      final currentState = state as HomeSuccess;
+      emit(
+        HomeSuccess(
+          user: currentState.user,
+          Category: currentState.Category,
+          prmotion: currentState.prmotion,
+          currentIndex: index, // Naya index set karo
+        ),
+      );
+    }
+    print("Cubit toggleIndex: $index");
   }
 }

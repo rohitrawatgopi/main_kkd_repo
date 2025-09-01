@@ -10,6 +10,7 @@ class CustomCategoryCard extends StatelessWidget {
     return InkWell(
       onTap: () async {
         context.read<ProductCategoryCubit>().categoryVise(category.id);
+        ProductCategoryCubit.pageCategory = 1;
         context.push(
           "/cactegoryProduct",
           extra: {"category": category.id, "screenName": category.categoryName},

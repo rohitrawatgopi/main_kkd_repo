@@ -1,3 +1,4 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/l10n/app_localizations.dart';
@@ -190,7 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     builder: (context, state) {
                                       if (state is AuthLoading) {
                                         return Center(
-                                          child: CircularProgressIndicator(),
+                                          child: SpinKitFadingCircle(
+                                            color: Colors.purple,
+                                            size: 50.0,
+                                          ),
                                         );
                                       }
                                       return AppButton(

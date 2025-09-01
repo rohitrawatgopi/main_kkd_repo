@@ -3,13 +3,11 @@ import 'package:paint_shop/app/import.dart';
 class CustomCarouselSlider extends StatelessWidget {
   final List<PromotionModel> promotionList;
   final CarouselSliderController carouselController;
-  final ValueChanged<int>? onPageChanged;
 
   const CustomCarouselSlider({
     super.key,
     required this.promotionList,
     required this.carouselController,
-    this.onPageChanged,
   });
 
   @override
@@ -40,9 +38,8 @@ class CustomCarouselSlider extends StatelessWidget {
         viewportFraction: 1.0,
         autoPlay: true,
         onPageChanged: (index, reason) {
-          if (onPageChanged != null) {
-            onPageChanged!(index);
-          }
+          print(index.toString());
+          context.read<HomeCubit>().toggleIndex(index);
         },
       ),
     );

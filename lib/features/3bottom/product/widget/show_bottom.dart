@@ -51,6 +51,7 @@ void showFilterBottomSheet(BuildContext context) {
               ) {
                 return InkWell(
                   onTap: () async {
+                    ProductCategoryCubit.pageCategory = 1;
                     context.read<ProductCategoryCubit>().categoryVise(
                       HomeCubit.resuableCategory[index].id,
                     );

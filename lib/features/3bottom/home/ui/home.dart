@@ -181,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 } else if (state is HomeSuccess) {
                   final mainUser = state.user;
-                  print(mainUser.coinsEarned.toString());
+                  int totleIndex = state.prmotion.length;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -224,8 +224,8 @@ class HomeScreen extends StatelessWidget {
                           Positioned(
                             bottom: 8.h,
                             child: AnimatedSmoothIndicator(
-                              activeIndex: state.index,
-                              count: state.prmotion.length,
+                              activeIndex: state.currentIndex, //
+                              count: totleIndex,
                               effect: WormEffect(
                                 dotWidth: 8.w,
                                 dotHeight: 8.w,

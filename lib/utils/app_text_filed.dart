@@ -27,7 +27,7 @@ class AppTextField extends StatelessWidget {
   final String? counterText;
   final FontWeight? fontWeight;
   final double? fontSize;
-
+  final TextAlignVertical? textAlignVertical;
   final Widget? prefixIcon;
   final Widget? surfixIcon;
   final TextInputType? keyBoardType;
@@ -48,6 +48,7 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     this.textHeight,
+    this.textAlignVertical,
     this.textSpace,
     this.prefixConstraints,
     this.labelText,
@@ -102,11 +103,10 @@ class AppTextField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'^\s'))],
       enabled: enabled,
-
+      textAlignVertical: textAlignVertical,
       focusNode: focusNode,
       initialValue: initialValue,
       validator: validator,
-
       onChanged: onChanged,
       readOnly: readOnly,
       obscureText: obscureText,
@@ -179,7 +179,7 @@ class AppTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
-            color: const Color.fromARGB(255, 195, 196, 225),
+            color: borderColor ?? Color.fromARGB(255, 195, 196, 225),
           ),
         ),
       ),

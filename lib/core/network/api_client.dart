@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:paint_shop/core/network/api_endpoints.dart';
 import 'package:paint_shop/core/services/token.hive.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   late final Dio _dio;
@@ -29,6 +30,7 @@ class DioClient {
       ..interceptors.add(
         RetryInterceptor(
           dio: _dio,
+
           logPrint: print, // optional logs
           retries: 3, // kitni baar retry karna hai
           retryDelays: const [
@@ -36,6 +38,21 @@ class DioClient {
             Duration(seconds: 4),
             Duration(seconds: 6),
           ],
+        ),
+      )
+      ..interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          requestBody: true,
+          responseHeader: false,
+          responseBody: true,
+          error: true,
+          compact: true,
+          maxWidth: 90,
+          logPrint: (object) {
+            // 👇 har ek log ko yellow me print karega
+            print('\x1B[33m$object\x1B[0m');
+          },
         ),
       )
       ..options.connectTimeout = const Duration(seconds: 10)

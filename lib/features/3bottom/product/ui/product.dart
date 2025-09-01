@@ -92,9 +92,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   );
                                 }
                                 if (state.paginationModel?.hasMore == true) {
-                                  return const Center(
-                                    child: ProductCardShimmer(),
-                                  );
+                                  return ProductCardShimmer();
                                 } else {
                                   return const Center(child: Gap(1));
                                 }
@@ -123,7 +121,7 @@ class ProductCardShimmer extends StatelessWidget {
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
       child: Container(
-        height: 160.h,
+        height: 140.h,
         width: 164.w,
         padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
         decoration: BoxDecoration(

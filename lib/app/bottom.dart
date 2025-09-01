@@ -163,9 +163,9 @@ class InternetBanner extends StatelessWidget {
                 Gap(40.h),
                 AppButton(
                   radius: 3.r,
-                  hight: 40.h,
+                  hight: 80.h,
                   color: Colors.blue,
-                  width: 100,
+                  width: 100.w,
                   onPressed: () {
                     context.read<NetworkCubit>().checkConnection();
                   },

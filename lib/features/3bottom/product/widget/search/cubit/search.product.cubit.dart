@@ -5,24 +5,38 @@ import 'package:paint_shop/features/repo/product.dart';
 import 'package:paint_shop/utils/dio.erro.dart';
 
 class ProductSearchCubit extends Cubit<ProductSearchSate> {
-  ProductSearchCubit() : super(ProductSearchInitial()) {}
+  ProductSearchCubit() : super(ProductSearchInitial());
 
   bool isFetching = false;
-  List<ProductModel> allProducts = [];
+  List<ProductModel> allProductsSearch = [];
   static int page1 = 1;
 
-  void searchProduct(String search) async {
+  void searchProduct(String search, {int limit = 10}) async {
     try {
-      emit(ProductSearchLoading());
+      if (page1 == 1) {
+        allProductsSearch.clear();
+
+        emit(ProductSearchLoading());
+      }
       final response = await ProductRepo.getProducts(
-        queryParams: {'search': search},
+        queryParams: {
+          'search': search,
+          'limit': limit.toString(),
+          'page': page1.toString(),
+        },
       );
       if (response.success == true) {
         final products = (response.data as List)
             .map((e) => ProductModel.fromJson(e))
             .toList();
 
-        emit(ProductSearchSuccess(products, response.pagination));
+        allProductsSearch.addAll(products);
+        if (response.pagination?.hasMore == true) {
+          page1++;
+        }
+        print(allProductsSearch.length.toString());
+
+        emit(ProductSearchSuccess(allProductsSearch, response.pagination));
       } else {
         emit(ProductSearchFailure(message: response.message!));
       }

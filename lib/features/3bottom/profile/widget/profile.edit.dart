@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/features/3bottom/profile/cubit/profile.cubit.dart';
@@ -331,7 +332,12 @@ class UdateProfileScreen extends StatelessWidget {
               BlocBuilder<ProfileCubit, ProfileState>(
                 builder: (context, state) {
                   if (state is FileUploadLoading) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(
+                      child: SpinKitFadingCircle(
+                        color: Colors.purple,
+                        size: 50.0,
+                      ),
+                    );
                   }
 
                   return AppButton(

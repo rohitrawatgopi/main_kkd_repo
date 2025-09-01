@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/network/api_endpoints.dart';
@@ -322,7 +323,10 @@ class _SignupScreenState extends State<SignupScreen> {
                             builder: (context, state) {
                               if (state is AuthLoading) {
                                 return Center(
-                                  child: CircularProgressIndicator(),
+                                  child: SpinKitFadingCircle(
+                                    color: Colors.purple,
+                                    size: 50.0,
+                                  ),
                                 );
                               }
                               return AppButton(
