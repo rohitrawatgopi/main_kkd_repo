@@ -7,9 +7,16 @@ import 'package:paint_shop/features/3bottom/withdraw/cubit/withdraw.state.dart';
 import 'package:paint_shop/features/3bottom/withdraw/widget/button.dart';
 import 'package:paint_shop/l10n/app_localizations.dart';
 
-class WithdrawScreen extends StatelessWidget {
+class WithdrawScreen extends StatefulWidget {
   WithdrawScreen({super.key});
+
+  @override
+  State<WithdrawScreen> createState() => _WithdrawScreenState();
+}
+
+class _WithdrawScreenState extends State<WithdrawScreen> {
   TextEditingController coinController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<WithDrawCubit, WithDrawState>(
@@ -20,6 +27,7 @@ class WithdrawScreen extends StatelessWidget {
           context.read<WithDrawCubit>().getPandingWithdrawl();
           await context.read<HomeCubit>().userDetails();
           AppToast.success(state.message);
+          setState(() {});
           coinController.text = "";
         }
 
@@ -182,12 +190,20 @@ class WithdrawScreen extends StatelessWidget {
                                 btName: AppLocalizations.of(context)!.request,
                                 onTab: () {
                                   FocusScope.of(context).unfocus();
-                                  if (coinController.text.isNotEmpty) {
+                                  if (coinController.text.isEmpty) {
+                                    AppToast.error("Enter valid coin");
+                                  } else if (int.tryParse(
+                                        coinController.text,
+                                      ) ==
+                                      null) {
+                                    AppToast.error("Enter valid number");
+                                  } else if (int.parse(coinController.text) >
+                                      HomeCubit.reusableUser.coinsEarned!) {
+                                    AppToast.error("Not enough coins");
+                                  } else {
                                     context.read<WithDrawCubit>().withdrawCoin(
                                       coin: coinController.text,
                                     );
-                                  } else {
-                                    AppToast.error("enter vaild coin");
                                   }
                                 },
                                 child:

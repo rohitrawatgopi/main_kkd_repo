@@ -148,6 +148,7 @@ class UdateProfileScreen extends StatelessWidget {
                       controller: emailController,
                     ),
                     AppTextField(
+                      labelText: "Age",
                       readOnly: true,
                       hintText: 'DD-MM-YYYY',
                       controller: dobController,

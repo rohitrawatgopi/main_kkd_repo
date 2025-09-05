@@ -135,6 +135,7 @@ class InternetBanner extends StatelessWidget {
 
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
@@ -163,12 +164,16 @@ class InternetBanner extends StatelessWidget {
                 Gap(40.h),
                 AppButton(
                   radius: 3.r,
-                  hight: 80.h,
                   color: Colors.blue,
-                  width: 100.w,
                   onPressed: () {
                     context.read<NetworkCubit>().checkConnection();
                   },
+                  padding: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 12.h,
+                    ),
+                  ),
                   title: AppLocalizations.of(context)!.retry,
                 ),
               ],

@@ -34,7 +34,6 @@ class ProductSearchCubit extends Cubit<ProductSearchSate> {
         if (response.pagination?.hasMore == true) {
           page1++;
         }
-        print(allProductsSearch.length.toString());
 
         emit(ProductSearchSuccess(allProductsSearch, response.pagination));
       } else {

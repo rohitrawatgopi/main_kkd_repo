@@ -75,17 +75,15 @@ class MyApp extends StatelessWidget {
                         SnackBar(
                           backgroundColor: Colors.red.shade600,
                           duration: const Duration(seconds: 1),
+                          behavior: SnackBarBehavior.floating,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                           content: AppText(
                             title: AppLocalizations.of(
                               context,
                             )!.couldntfindanyavailablenetworks,
-                          ),
-                          action: SnackBarAction(
-                            label: AppLocalizations.of(context)!.retry,
-                            textColor: Colors.white,
-                            onPressed: () {
-                              context.read<NetworkCubit>().checkConnection();
-                            },
                           ),
                         ),
                       );

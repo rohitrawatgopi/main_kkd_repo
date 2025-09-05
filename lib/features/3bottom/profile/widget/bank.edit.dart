@@ -60,7 +60,7 @@ class UdateBankScreen extends StatelessWidget {
       text: user.accountHolderName,
     );
     final bankNameController = TextEditingController(text: user.bankName);
-    final IFSCController = TextEditingController(text: user.ifscCode);
+    final iFSCController = TextEditingController(text: user.ifscCode);
     File? file;
     return AppContainer(
       child: BlocListener<ProfileCubit, ProfileState>(
@@ -105,7 +105,7 @@ class UdateBankScreen extends StatelessWidget {
                     Gap(4.w),
                     AppText(
                       title:
-                          "${AppLocalizations.of(context)!.uploadYour} ${updateScreenName}",
+                          "${AppLocalizations.of(context)!.uploadYour} $updateScreenName",
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
                     ),
@@ -146,7 +146,7 @@ class UdateBankScreen extends StatelessWidget {
                   hintText: AppLocalizations.of(context)!.accountHolder,
                   validator: RequiredValidator(
                     errorText: 'Account Holder Name is required',
-                  ),
+                  ).call,
                 ),
 
                 AppTextField(
@@ -189,13 +189,13 @@ class UdateBankScreen extends StatelessWidget {
                   hintText: AppLocalizations.of(context)!.bankName,
                   validator: RequiredValidator(
                     errorText: 'Bank Name is required',
-                  ),
+                  ).call,
                 ),
 
                 // Pin Code
                 AppTextField(
                   labelText: AppLocalizations.of(context)!.ifsc,
-                  controller: IFSCController,
+                  controller: iFSCController,
 
                   hintText: AppLocalizations.of(context)!.ifsc,
 
@@ -316,7 +316,7 @@ class UdateBankScreen extends StatelessWidget {
                                   accountHolderName: accounHolderController.text
                                       .trim(),
                                   bankName: bankNameController.text.trim(),
-                                  ifscCode: IFSCController.text.trim(),
+                                  ifscCode: iFSCController.text.trim(),
                                   passbookPhoto: file,
                                 );
 

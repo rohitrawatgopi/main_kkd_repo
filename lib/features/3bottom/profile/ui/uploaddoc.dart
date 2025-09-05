@@ -102,6 +102,7 @@ class UploadDocumnetScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             AppText(
+                              maxLine: 1,
                               title: file.path.split('/').last, // Show filename
                               textAlign: TextAlign.center,
                             ),
@@ -153,32 +154,26 @@ class UploadDocumnetScreen extends StatelessWidget {
                   hight: 40.h,
                   radius: 12.w,
                   onPressed: () async {
-                    file ?? () {};
-
-                    switch (uploadScreenName) {
-                      case AppString.aadharCard:
-                        await context.read<ProfileCubit>().upploadAdhar(
-                          file: file!,
-                        );
-
-                        context.read<HomeCubit>().userDetailsForProfile();
-                        break;
-                      case AppString.passbook:
-                        await context.read<ProfileCubit>().upploadPass(
-                          file: file!,
-                        );
-
-                        context.read<HomeCubit>().userDetailsForProfile();
-                        break;
-                      case AppString.panCard:
-                        await context.read<ProfileCubit>().upploadPan(
-                          file: file!,
-                        );
-
-                        context.read<HomeCubit>().userDetailsForProfile();
-                        break;
-
-                      default:
+                    if (file == null) {
+                      AppToast.error("Please select a file");
+                      return;
+                    } else if (uploadScreenName == AppString.aadharCard ||
+                        uploadScreenName == "आधार कार्ड") {
+                      await context.read<ProfileCubit>().upploadAdhar(
+                        file: file!,
+                      );
+                      context.read<HomeCubit>().userDetailsForProfile();
+                    } else if (uploadScreenName == AppString.passbook) {
+                      await context.read<ProfileCubit>().upploadPass(
+                        file: file!,
+                      );
+                      context.read<HomeCubit>().userDetailsForProfile();
+                    } else if (uploadScreenName == AppString.panCard ||
+                        uploadScreenName == "पैन कार्ड") {
+                      await context.read<ProfileCubit>().upploadPan(
+                        file: file!,
+                      );
+                      context.read<HomeCubit>().userDetailsForProfile();
                     }
                   },
 

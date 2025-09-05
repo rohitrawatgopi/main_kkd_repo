@@ -9,8 +9,10 @@ class CustomCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        context.read<ProductCategoryCubit>().categoryVise(category.id);
         ProductCategoryCubit.pageCategory = 1;
+        FocusScope.of(context).unfocus();
+        context.read<ProductCategoryCubit>().categoryVise(category.id);
+
         context.push(
           "/cactegoryProduct",
           extra: {"category": category.id, "screenName": category.categoryName},

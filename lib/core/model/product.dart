@@ -2,6 +2,7 @@ class ProductModel {
   final String id;
   final String productId;
   final String productName;
+  final String description;
   final Category category;
   final int coinReward;
   final String productImage;
@@ -11,6 +12,7 @@ class ProductModel {
     required this.id,
     required this.productId,
     required this.productName,
+    required this.description,
     required this.category,
     required this.coinReward,
     required this.productImage,
@@ -22,6 +24,7 @@ class ProductModel {
       id: json['_id'],
       productId: json['productId'],
       productName: json['productName'],
+      description: json['description'] ?? "",
       category: Category.fromJson(json['category']),
       coinReward: json['coinReward'],
       productImage: json['productImage'],
@@ -34,6 +37,7 @@ class ProductModel {
       '_id': id,
       'productId': productId,
       'productName': productName,
+      'description': description,
       'category': category.toJson(),
       'coinReward': coinReward,
       'productImage': productImage,

@@ -7,6 +7,7 @@ class AppButton extends StatelessWidget {
   final double? width;
   final Function() onPressed;
   final bool isLoading;
+  final Padding? padding;
   final Color? color;
   final Color? textColor;
   final Color? borderColor;
@@ -25,6 +26,7 @@ class AppButton extends StatelessWidget {
     required this.title,
     this.hight,
     this.width,
+    this.padding,
     this.fontHeight,
     this.color,
     this.radius = 30,

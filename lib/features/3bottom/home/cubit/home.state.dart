@@ -31,3 +31,8 @@ class UserGetSuccess extends HomeState {
   final UserModel user;
   UserGetSuccess({required this.user});
 }
+
+class IndexChangeState extends HomeState {
+  final int index1;
+  IndexChangeState({required this.index1});
+}

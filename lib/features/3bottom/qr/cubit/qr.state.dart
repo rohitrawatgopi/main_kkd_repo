@@ -7,6 +7,12 @@ class ScannerInitial extends ScannerState {}
 
 class ScannerLoading extends ScannerState {}
 
+class ScannerFaileMessage extends ScannerState {
+  final String message;
+
+  ScannerFaileMessage({required this.message});
+}
+
 class ScannerSuccess extends ScannerState {
   final String coin;
   ScannerSuccess(this.coin);
@@ -14,6 +20,7 @@ class ScannerSuccess extends ScannerState {
 
 class ScannerFailure extends ScannerState {
   final QrScanDataModel qrScanDataModel;
+
   ScannerFailure(this.qrScanDataModel);
 }
 

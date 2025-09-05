@@ -126,7 +126,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               keyBoardType: TextInputType.emailAddress,
                               validator: MultiValidator([
                                 MaxLengthValidator(
-                                  25,
+                                  35,
                                   errorText: AppLocalizations.of(
                                     context,
                                   )!.emailtoolong,

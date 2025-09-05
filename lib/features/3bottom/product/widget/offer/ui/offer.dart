@@ -1,4 +1,3 @@
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.cubit.dart';
 import 'package:paint_shop/features/3bottom/product/widget/offer/cubit/category.product.state.dart';
@@ -15,27 +14,28 @@ class _CategoryProductSreenState extends State<OfferScreen> {
   final ScrollController _scrollController = ScrollController();
 
   bool _isLoadingMore = true;
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 100 &&
+          _isLoadingMore) {
+        context.read<ProductOfferCubit>().getOffer();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    {
-      _scrollController.addListener(() {
-        if (_scrollController.position.pixels >=
-                _scrollController.position.maxScrollExtent - 100 &&
-            _isLoadingMore) {
-          context.read<ProductOfferCubit>().getOffer();
-        }
-      });
-    }
-
     return BlocBuilder<ProductOfferCubit, ProductOfferSate>(
       builder: (context, state) {
         if (state is ProductOfferSuccess) {
           List<ProductModel> productList = state.products;
-
+          _isLoadingMore = state.paginationModel!.hasMore!;
           return RefreshIndicator(
             onRefresh: () {
-              return context.read<ProductOfferCubit>().getOffer();
+              return context.read<ProductOfferCubit>().refreshOffer();
             },
             child: AppContainer(
               left: 8.w,
@@ -82,7 +82,7 @@ class _CategoryProductSreenState extends State<OfferScreen> {
                             removeTop: true,
                             child: GridView.builder(
                               itemCount: productList.length + 1,
-
+                              controller: _scrollController,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
@@ -92,24 +92,21 @@ class _CategoryProductSreenState extends State<OfferScreen> {
                               itemBuilder: (context, index) {
                                 if (index < productList.length) {
                                   return InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      context.push(
+                                        "/details",
+                                        extra: productList[index],
+                                      );
+                                    },
                                     child: ProductCard(
                                       product: productList[index],
                                     ),
                                   );
                                 } else {
                                   if (state.paginationModel!.hasMore != false) {
-                                    return Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: SpinKitFadingCircle(
-                                          color: Colors.purple,
-                                          size: 50.0,
-                                        ),
-                                      ),
-                                    );
+                                    return ProductCardShimmer();
                                   } else {
-                                    return ProductCardLast();
+                                    return Gap(1.h);
                                   }
                                 }
                               },

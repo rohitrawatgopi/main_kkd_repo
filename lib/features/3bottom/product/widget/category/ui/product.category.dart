@@ -23,7 +23,7 @@ class _CategoryProductSreenState extends State<CategoryProductScreen> {
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 100 &&
+              _scrollController.position.maxScrollExtent - 400 &&
           _isLoadingMore) {
         _isLoadingMore = false;
         context.read<ProductCategoryCubit>().categoryVise(widget.categoryId);
@@ -106,11 +106,9 @@ class _CategoryProductSreenState extends State<CategoryProductScreen> {
                                 );
                               } else {
                                 if (state.paginationModel!.hasMore != false) {
-                                  return const Center(
-                                    child: ProductCardShimmer(),
-                                  );
+                                  return ProductCardShimmer();
                                 } else {
-                                  return ProductCardLast();
+                                  return Gap(1);
                                 }
                               }
                             },
@@ -122,35 +120,6 @@ class _CategoryProductSreenState extends State<CategoryProductScreen> {
           );
         }
         return AllProductShimmer();
-        // return Container(
-        //   padding: EdgeInsets.all(8.h),
-        //   child: Column(
-        //     children: [
-        //       Gap(45.h),
-        //       AppSearchContainerShimmer(),
-
-        //       Gap(15.h),
-        //       Expanded(
-        //         child: MediaQuery.removePadding(
-        //           context: context,
-        //           removeTop: true,
-        //           child: GridView.builder(
-        //             controller: _scrollController,
-        //             itemCount: 6,
-        //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //               crossAxisCount: 2,
-        //               childAspectRatio: 0.8,
-        //               crossAxisSpacing: 5.w,
-        //             ),
-        //             itemBuilder: (context, index) {
-        //               return InkWell(onTap: () {}, child: ProductCardShimmer());
-        //             },
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // );
       },
     );
   }

@@ -18,7 +18,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 50 &&
+              _scrollController.position.maxScrollExtent - 400 &&
           _isLoadingMore) {
         _isLoadingMore = false;
         context.read<ProductCubit>().getPageWise();
@@ -67,7 +67,12 @@ class _ProductScreenState extends State<ProductScreen> {
                   Expanded(
                     flex: 1,
                     child: productList.isEmpty
-                        ? const ProductCardShimmer()
+                        ? Center(
+                            child: AppText(
+                              title: "Product List Is Empty",
+                              color: Colors.black,
+                            ),
+                          )
                         : MediaQuery.removePadding(
                             context: context,
                             removeTop: true,
@@ -94,7 +99,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 if (state.paginationModel?.hasMore == true) {
                                   return ProductCardShimmer();
                                 } else {
-                                  return const Center(child: Gap(1));
+                                  return Center(child: Gap(1.h));
                                 }
                               },
                             ),
@@ -151,15 +156,6 @@ class ProductCardShimmer extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ProductCardLast extends StatelessWidget {
-  const ProductCardLast({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Gap(1);
   }
 }
 

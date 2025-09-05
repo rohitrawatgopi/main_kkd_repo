@@ -39,7 +39,7 @@ final GoRouter appRouter = GoRouter(
 
           builder: (context, state) {
             final search = state.extra as String;
-            return searchProductScreen(screenName: search);
+            return SearchProductScreen(screenName: search);
           },
         ),
         GoRoute(

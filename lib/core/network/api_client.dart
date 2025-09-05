@@ -43,11 +43,9 @@ class DioClient {
       ..interceptors.add(
         PrettyDioLogger(
           requestHeader: true,
-          requestBody: true,
-          responseHeader: false,
+
           responseBody: true,
-          error: true,
-          compact: true,
+
           maxWidth: 90,
           logPrint: (object) {
             // 👇 har ek log ko yellow me print karega

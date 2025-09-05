@@ -3,14 +3,14 @@ import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/features/3bottom/product/widget/search/cubit/search.product.cubit.dart';
 import 'package:paint_shop/features/3bottom/product/widget/search/cubit/search.product.state.dart';
 
-class searchProductScreen extends StatefulWidget {
+class SearchProductScreen extends StatefulWidget {
   String screenName;
-  searchProductScreen({Key? key, required this.screenName}) : super(key: key);
+  SearchProductScreen({Key? key, required this.screenName}) : super(key: key);
   @override
-  State<searchProductScreen> createState() => _OfferProductSreenState();
+  State<SearchProductScreen> createState() => _OfferProductSreenState();
 }
 
-class _OfferProductSreenState extends State<searchProductScreen> {
+class _OfferProductSreenState extends State<SearchProductScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isLoadingMore = true;
 

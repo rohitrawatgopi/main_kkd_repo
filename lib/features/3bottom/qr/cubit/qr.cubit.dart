@@ -8,11 +8,17 @@ import 'package:paint_shop/utils/dio.erro.dart';
 
 class ScannerCubit extends Cubit<ScannerState> {
   bool isOn = false;
-  ScannerCubit() : super(ScannerInitial()) {}
+  ScannerCubit() : super(ScannerInitial());
 
   Future<void> QrScan({required Map<String, dynamic> value}) async {
     try {
-      final payload = {"qrData": value};
+      Map<String, dynamic> payload = {};
+
+      if (value.containsKey("code")) {
+        payload = value;
+      } else {
+        payload = {"qrData": value};
+      }
 
       emit(ScannerLoading());
 
@@ -22,6 +28,8 @@ class ScannerCubit extends Cubit<ScannerState> {
         final coin = response.data?["coinsEarned"]?.toString() ?? '0';
 
         emit(ScannerSuccess(coin));
+      } else if (response.message == "Product not found. Invalid QR code.") {
+        emit(ScannerFaileMessage(message: response.message!));
       } else {
         QrScanDataModel qr = QrScanDataModel.fromJson(response.data);
         emit(ScannerFailure(qr));

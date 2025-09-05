@@ -74,7 +74,7 @@ void showDeleteAccount(BuildContext context) {
                 );
               },
             ),
-            SizedBox(width: 12.w),
+            SizedBox(width: 2.w),
             SizedBox(
               width: 100.w,
               height: 40.h,

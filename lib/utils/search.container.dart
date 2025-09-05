@@ -8,17 +8,16 @@ class AppSearchContainer extends StatelessWidget {
   final String image;
   final VoidCallback ontab;
 
-  const AppSearchContainer({
+  AppSearchContainer({
     Key? key,
     required this.ontab,
     this.hintText,
 
     required this.image,
   }) : super(key: key);
-
+  final TextEditingController searchContoller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final TextEditingController searchContoller = TextEditingController();
     performSearch(String value) {
       ProductSearchCubit.page1 = 1;
       context.read<ProductSearchCubit>().searchProduct(searchContoller.text);

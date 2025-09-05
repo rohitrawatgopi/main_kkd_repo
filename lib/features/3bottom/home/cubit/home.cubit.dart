@@ -6,7 +6,7 @@ import 'package:paint_shop/features/3bottom/home/cubit/home.state.dart';
 import 'package:paint_shop/features/repo/home.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial()) {}
+  HomeCubit() : super(HomeInitial());
   UserModel? _user;
   List<CategoryModel>? _categories;
   List<PromotionModel>? _prmotion;
@@ -15,17 +15,19 @@ class HomeCubit extends Cubit<HomeState> {
   static UserModel reusableUser = UserModel();
 
   Future<void> userDetails() async {
-    try {
-      emit(HomeLoading());
-      final response = await HomeRepo.UserDetails();
-      if (response.success == true) {
-        _user = UserModel.fromJson(response.data);
+    final response = await HomeRepo.UserDetails();
+    if (response.success == true) {
+      _user = UserModel.fromJson(response.data);
 
-        reusableUser = _user!;
-        // _emitCombinedState();
-      }
-    } catch (e) {
-      emit(HomeFailure("something went wrong"));
+      reusableUser = _user!;
+
+      emit(
+        HomeSuccess(
+          Category: resuableCategory,
+          user: _user!,
+          prmotion: _prmotion!,
+        ),
+      );
     }
   }
 
@@ -122,20 +124,5 @@ class HomeCubit extends Cubit<HomeState> {
     } catch (e) {
       emit(HomeFailure("Something went wrong: $e"));
     }
-  }
-
-  void toggleIndex(int index) {
-    if (state is HomeSuccess) {
-      final currentState = state as HomeSuccess;
-      emit(
-        HomeSuccess(
-          user: currentState.user,
-          Category: currentState.Category,
-          prmotion: currentState.prmotion,
-          currentIndex: index, // Naya index set karo
-        ),
-      );
-    }
-    print("Cubit toggleIndex: $index");
   }
 }

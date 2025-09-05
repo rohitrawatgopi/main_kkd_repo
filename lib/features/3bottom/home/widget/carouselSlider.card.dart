@@ -37,10 +37,7 @@ class CustomCarouselSlider extends StatelessWidget {
       options: CarouselOptions(
         viewportFraction: 1.0,
         autoPlay: true,
-        onPageChanged: (index, reason) {
-          print(index.toString());
-          context.read<HomeCubit>().toggleIndex(index);
-        },
+        onPageChanged: (index, reason) {},
       ),
     );
   }
