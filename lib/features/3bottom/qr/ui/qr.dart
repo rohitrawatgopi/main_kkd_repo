@@ -161,45 +161,53 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
             Positioned(
               bottom: 80.h,
 
-              child: SizedBox(
-                height: 50.h,
-                width: 380.w, // <- yaha .w use kar
-                child: AppTextField(
-                  borderRadius: 14.r,
-                  controller: _cardNumber,
-                  hintStyle: const TextStyle(color: Colors.white),
-                  textColor: const Color(0xFFA1A1A1),
-                  hintText: "Enter Your Card Number",
-                  bgColor: const Color(0xFF151515),
-                  borderColor: const Color(0xFFF1AF1), // yaha galti thi F1Af1
-                  surfixIcon: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 12, 18, 182),
-                        minimumSize: Size(
-                          40.w,
-                          50.h,
-                        ), // button ki height/width bhi fix kar
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+              child: Padding(
+                padding: EdgeInsets.only(left: 8.w, right: 8.w),
+                child: SizedBox(
+                  height: 50.h,
+                  width: 360.w, // <- yaha .w use kar
+                  child: AppTextField(
+                    borderRadius: 14.r,
+                    controller: _cardNumber,
+                    hintStyle: const TextStyle(color: Colors.white),
+                    textColor: const Color(0xFFA1A1A1),
+                    hintText: "Enter Your Card Number",
+                    bgColor: const Color(0xFF151515),
+                    borderColor: const Color(0xFFF1AF1), // yaha galti thi F1Af1
+                    surfixIcon: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            12,
+                            18,
+                            182,
+                          ),
+                          minimumSize: Size(
+                            40.w,
+                            50.h,
+                          ), // button ki height/width bhi fix kar
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
                         ),
-                      ),
-                      onPressed: () {
-                        FocusScope.of(context).unfocus();
-                        if (_cardNumber.text.length != 10) {
-                          AppToast.error("Please Enter Valid Code");
-                          return;
-                        } else {
-                          final payload = {"code": _cardNumber.text};
-                          context.read<ScannerCubit>().QrScan(value: payload);
-                        }
-                        _cardNumber.text = "";
-                      },
-                      child: Icon(
-                        Icons.send,
-                        color: const Color(0xFFF1F1F1),
-                        size: 24.r,
+                        onPressed: () {
+                          FocusScope.of(context).unfocus();
+                          if (_cardNumber.text.length != 10) {
+                            AppToast.error("Please Enter Valid Code");
+                            return;
+                          } else {
+                            final payload = {"code": _cardNumber.text};
+                            context.read<ScannerCubit>().QrScan(value: payload);
+                          }
+                          _cardNumber.text = "";
+                        },
+                        child: Icon(
+                          Icons.send,
+                          color: const Color(0xFFF1F1F1),
+                          size: 24.r,
+                        ),
                       ),
                     ),
                   ),
