@@ -49,7 +49,6 @@ class AuthRepo {
 
     return ResponseModel.fromJson(response.data as Map<String, dynamic>);
   }
-
   static Future deleteAccount() async {
     DioClient dioClient = DioClient();
 

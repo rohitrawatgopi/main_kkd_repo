@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/network/response_model.dart';
-import 'package:paint_shop/core/services/image_picker_service.dart';
 import 'package:paint_shop/features/3bottom/profile/cubit/profile.state.dart';
 import 'package:paint_shop/features/repo/profile.dart';
 
@@ -14,26 +14,58 @@ class ProfileCubit extends Cubit<ProfileState> {
   String? selectedState = "Uttarakhand";
   String? selectedBank = "";
   Future<File?> getFilfle() async {
-    FilePickerResult? result = await ReusableFilePicker.pickFile();
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     try {
       if (result == null || result.files.isEmpty) {
         emit(FilePickefailer(msg: "No file was selected."));
-      } else {
-        final extension = result.files.single.extension!.toLowerCase();
-        final file = File(result.files.single.path!);
-
-        final fileSize = await file.length();
-        if (fileSize > 5242880) {
-          emit(FilePickefailer(msg: "File size should not exceed 5 MB"));
-        } else if (!['jpg', 'png', 'pdf'].contains(extension)) {
-          emit(FilePickefailer(msg: "Only JPG, PNG, or PDF files are allowed"));
-        }
-
-        emit(FilePickeSuccess(file: file));
-        return file;
+        return null;
       }
+
+      final extension = result.files.single.extension?.toLowerCase();
+      File file = File(result.files.single.path!);
+
+      final fileSize = await file.length();
+      if (fileSize > 5242880) {
+        emit(FilePickefailer(msg: "File size should not exceed 5 MB"));
+        return null;
+      } else if (!['jpg', 'png', 'pdf'].contains(extension)) {
+        emit(FilePickefailer(msg: "Only JPG, PNG, or PDF files are allowed"));
+        return null;
+      }
+
+      // 🖼️ Crop only if image
+      if (['jpg', 'png'].contains(extension)) {
+        final CroppedFile? croppedFile = await ImageCropper().cropImage(
+          sourcePath: file.path,
+          compressQuality: 100,
+          aspectRatio: const CropAspectRatio(
+            ratioX: 1,
+            ratioY: 1,
+          ), // 👈 default square crop
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Crop Image',
+              toolbarColor: Colors.blue.shade500,
+              toolbarWidgetColor: Colors.white,
+              lockAspectRatio: false,
+            ),
+            IOSUiSettings(title: 'Crop Image'),
+          ],
+        );
+
+        if (croppedFile != null) {
+          file = File(croppedFile.path);
+        } else {
+          emit(FilePickefailer(msg: "Image cropping was cancelled."));
+          return null;
+        }
+      }
+
+      emit(FilePickeSuccess(file: file));
+      return file;
     } catch (e) {
+      emit(FilePickefailer(msg: "Error: ${e.toString()}"));
       return null;
     }
   }
