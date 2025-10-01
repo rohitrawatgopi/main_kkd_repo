@@ -7,6 +7,7 @@ import 'package:paint_shop/features/repo/qr.dart';
 import 'package:paint_shop/utils/dio.erro.dart';
 
 class ScannerCubit extends Cubit<ScannerState> {
+  static bool isScanning = true;
   bool isOn = false;
   ScannerCubit() : super(ScannerInitial());
 

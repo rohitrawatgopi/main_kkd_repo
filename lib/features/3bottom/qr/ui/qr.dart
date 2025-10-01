@@ -84,12 +84,17 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
               fit: BoxFit.cover,
               useAppLifecycleState: true,
               onDetect: (BarcodeCapture capture) {
+                if (ScannerCubit.isScanning == false) {
+                  return;
+                }
+
                 final List<Barcode> barcodes = capture.barcodes;
 
                 if (barcodes.isNotEmpty) {
                   final String? raw = barcodes.first.rawValue;
 
                   if (raw != null) {
+                    ScannerCubit.isScanning = false;
                     _processQRCode(raw);
                   }
                 }

@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/model/qr.model.dart';
+import 'package:paint_shop/features/3bottom/qr/cubit/qr.cubit.dart';
 import 'package:paint_shop/l10n/app_localizations.dart';
 
 class QrScarrenWidget {
@@ -17,6 +18,7 @@ class QrScarrenWidget {
             right: -5,
             child: IconButton(
               onPressed: () {
+                ScannerCubit.isScanning = true;
                 Navigator.of(context).pop();
               },
               icon: Icon(Icons.close, size: 30.w),
@@ -84,6 +86,7 @@ class QrScarrenWidget {
             right: -5,
             child: IconButton(
               onPressed: () {
+                ScannerCubit.isScanning = true;
                 Navigator.of(context).pop();
               },
               icon: Icon(Icons.close, size: 30.w),
