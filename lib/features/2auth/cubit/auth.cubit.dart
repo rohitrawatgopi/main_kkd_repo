@@ -105,4 +105,62 @@ class AuthCubit extends Cubit<AuthState> {
       );
     }
   }
+
+  Future<void> forgotPassward(String email) async {
+    try {
+      emit(ForgotButtonLoading());
+      final ResponseModel response = await AuthRepo.forgotPassward(email);
+      if (response.success == true) {
+        emit(ForgotPassSuccess());
+      } else {
+        emit(ForgotPassFail(response.message ?? "Something Went Wrong"));
+      }
+    } catch (e) {
+      emit(
+        ForgotPassFail(
+          e.toString() ?? "Failed to delete account. Please try again.",
+        ),
+      );
+    }
+  }
+
+  Future<void> verifyOTP(String email, String otp) async {
+    try {
+      print(email);
+      emit(otpVerifyLoading());
+      final ResponseModel response = await AuthRepo.verifyOTPRepo(email, otp);
+      if (response.success == true) {
+        emit(otpVerifySucess());
+      } else {
+        emit(otpVerifyFail(response.message ?? "Something Went Wrong"));
+      }
+    } catch (e) {
+      emit(
+        ForgotPassFail(
+          e.toString() ?? "Failed to delete account. Please try again.",
+        ),
+      );
+    }
+  }
+
+  Future<void> upadtePassword(String email, String password) async {
+    try {
+      emit(updatePassLoading());
+      final ResponseModel response = await AuthRepo.upadtePassword(
+        email,
+        password,
+      );
+      if (response.success == true) {
+        emit(updatePassSuccess());
+      } else {
+        emit(updatePassFail(response.message ?? "Something Went Wrong"));
+      }
+    } catch (e) {
+      emit(
+        updatePassFail(
+          e.toString() ?? "Failed to delete account. Please try again.",
+        ),
+      );
+    }
+  }
 }

@@ -49,11 +49,45 @@ class AuthRepo {
 
     return ResponseModel.fromJson(response.data as Map<String, dynamic>);
   }
+
   static Future deleteAccount() async {
     DioClient dioClient = DioClient();
 
     final Response response = await dioClient.delete(
       ApiEndpoints.deleteAccount,
+    );
+
+    return ResponseModel.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  static Future forgotPassward(String emai) async {
+    DioClient dioClient = DioClient();
+
+    final Response response = await dioClient.post(
+      ApiEndpoints.sendOTP,
+      data: {"email": emai},
+    );
+
+    return ResponseModel.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  static Future verifyOTPRepo(String emai, String otp) async {
+    DioClient dioClient = DioClient();
+
+    final Response response = await dioClient.post(
+      ApiEndpoints.verify,
+      data: {"email": emai, "otp": otp},
+    );
+
+    return ResponseModel.fromJson(response.data as Map<String, dynamic>);
+  }
+
+  static Future upadtePassword(String emai, String password) async {
+    DioClient dioClient = DioClient();
+
+    final Response response = await dioClient.post(
+      ApiEndpoints.upadtePassword,
+      data: {"email": emai, "newPassword": password},
     );
 
     return ResponseModel.fromJson(response.data as Map<String, dynamic>);

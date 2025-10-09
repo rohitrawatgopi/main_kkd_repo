@@ -16,6 +16,10 @@ class ApiEndpoints {
   static String offer = "api/user/get-offer-products";
   static String getPandingWithdrawl = "api/user/get-pending-withdrawals";
   static String deleteAccount = "api/user/app/request-delete";
+  static String forgotPassward = "api/user/app/forgotPassward";
+  static String sendOTP = "api/user/forgot-password/send-otp";
+  static String verify = "api/user/forgot-password/verify-otp";
+  static String upadtePassword = "api/user/forgot-password/set-new-password";
   static String termsPrivacy =
       "https://kkd-rgm5.onrender.com/terms-and-privacy";
 

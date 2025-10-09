@@ -91,14 +91,15 @@ class ProfileScreen extends StatelessWidget {
                   title: AppLocalizations.of(context)!.kyc,
                   infoList: [
                     InfoRow(
-                      label: AppLocalizations.of(context)!.panCard,
+                      label: " " + AppLocalizations.of(context)!.panCard,
                       value: user.panVerificationStatus!.isEmpty
                           ? null
                           : user.panVerificationStatus,
                       value2: AppLocalizations.of(context)!.panCard,
                     ),
+
                     InfoRow(
-                      label: AppLocalizations.of(context)!.aadharCard,
+                      label: " " + AppLocalizations.of(context)!.aadharCard,
                       value: user.aadharVerificationStatus!.isEmpty
                           ? null
                           : user.aadharVerificationStatus,
@@ -180,34 +181,38 @@ class InfoRow extends StatelessWidget {
         (value == "incomplete" &&
             label != AppLocalizations.of(context)!.passbook);
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: isValueEmpty
-          ? MainAxisAlignment.start
-          : MainAxisAlignment.spaceBetween,
-      children: [
-        if (isValueEmpty)
-          InkWell(
-            onTap: () => context.push("/UploadDocumnetScreen", extra: value2),
-            child: Icon(Icons.add_circle_outline_rounded, size: 18),
-          ),
-        if (isValueEmpty) SizedBox(width: 1),
+    return InkWell(
+      onTap: () {
+        if (isValueEmpty) {
+          context.push("/UploadDocumnetScreen", extra: value2);
+        }
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: isValueEmpty
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.spaceBetween,
+        children: [
+          if (isValueEmpty)
+            InkWell(child: Icon(Icons.add_circle_outline_rounded, size: 18.r)),
+          if (isValueEmpty) SizedBox(width: 1),
 
-        AppText(title: label, fontSize: 14.sp, fontWeight: FontWeight.w500),
+          AppText(title: label, fontSize: 14.sp, fontWeight: FontWeight.w500),
 
-        if (!isValueEmpty) ...[
-          Spacer(),
-          Flexible(
-            child: AppText(
-              title: value!,
-              maxLine: 1,
-              fontSize: 14,
-              textOverflow: TextOverflow.ellipsis,
-              fontWeight: FontWeight.w400,
+          if (!isValueEmpty) ...[
+            Spacer(),
+            Flexible(
+              child: AppText(
+                title: value!,
+                maxLine: 1,
+                fontSize: 14,
+                textOverflow: TextOverflow.ellipsis,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

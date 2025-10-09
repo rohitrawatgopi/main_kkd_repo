@@ -18,10 +18,8 @@ void main() async {
   await Hive.openBox('authBox');
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation
-        .portraitDown, // optional agar ulta portrait bhi allow karna ho
+    DeviceOrientation.portraitDown,
   ]);
-  // debugPaintSizeEnabled = true;
 
   runApp(
     MultiBlocProvider(
