@@ -117,7 +117,7 @@ class QrScarrenWidget {
                   context,
                 )!.thisQrCodeHasAlreadyBeenUsedBy,
                 fontWeight: FontWeight.w400,
-                fontSize: 16.sp,
+                fontSize: 14.sp,
 
                 height: 1.5,
               ),

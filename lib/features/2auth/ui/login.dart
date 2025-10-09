@@ -175,6 +175,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                               );
                                             },
                                           ),
+                                          Gap(5.h),
+                                          InkWell(
+                                            onTap: () {
+                                              context.push("/forgot");
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                AppText(
+                                                  textDecoration:
+                                                      TextDecoration.underline,
+                                                  title:
+                                                      "Forgot Your Password?",
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -182,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
 
-                              Gap(364.h),
+                              Gap(360.h),
                               Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

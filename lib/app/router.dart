@@ -16,6 +16,9 @@ import 'package:paint_shop/features/3bottom/withdraw/ui/Withdraw.dart';
 import 'package:paint_shop/features/3bottom/withdraw/ui/history.dart'
     show WithDrawaHistory;
 import 'package:paint_shop/features/4lang/dilog.dart';
+import 'package:paint_shop/features/forgot/change.pass.dart';
+import 'package:paint_shop/features/forgot/forgot.dart';
+import 'package:paint_shop/features/forgot/otp.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/splash',
@@ -124,5 +127,24 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => LanguageDialog(),
     ),
     GoRoute(path: '/splash', builder: (context, state) => OnboardingScreen()),
+    GoRoute(
+      path: '/forgot',
+      builder: (context, state) => ForgotPasswardScreen(),
+    ),
+
+    GoRoute(
+      path: '/otp',
+      builder: (context, state) {
+        final email = state.extra as String;
+        return OtpScreen(email: email);
+      },
+    ),
+    GoRoute(
+      path: '/changePassword',
+      builder: (context, state) {
+        final email = state.extra as String;
+        return ChangePasswordScreen(email: email);
+      },
+    ),
   ],
 );

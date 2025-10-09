@@ -45,6 +45,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           ), // 👈 default square crop
           uiSettings: [
             AndroidUiSettings(
+              
               toolbarTitle: 'Crop Image',
               toolbarColor: Colors.blue.shade500,
               toolbarWidgetColor: Colors.white,

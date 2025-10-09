@@ -1,5 +1,6 @@
 // scanner_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:paint_shop/app/import.dart';
 import 'package:paint_shop/core/model/qr.model.dart';
 import 'package:paint_shop/core/network/response_model.dart';
 import 'package:paint_shop/features/3bottom/qr/cubit/qr.state.dart';
@@ -30,6 +31,10 @@ class ScannerCubit extends Cubit<ScannerState> {
 
         emit(ScannerSuccess(coin));
       } else if (response.message == "Product not found. Invalid QR code.") {
+        emit(ScannerFaileMessage(message: response.message!));
+      } else if (response.message == "KYC Must be approved") {
+        emit(ScannerFaileMessage(message: response.message!));
+      } else if (response.message == "The QR code is currently inactive.") {
         emit(ScannerFaileMessage(message: response.message!));
       } else {
         QrScanDataModel qr = QrScanDataModel.fromJson(response.data);

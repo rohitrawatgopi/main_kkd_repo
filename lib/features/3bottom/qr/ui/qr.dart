@@ -73,6 +73,8 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
           );
           context.read<HomeCubit>().userDetailsForProfile();
         } else if (state is ScannerFaileMessage) {
+          ScannerCubit.isScanning = true;
+
           AppToast.error(state.message);
         }
       },
@@ -235,6 +237,8 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
         "type": decoded["type"],
         "timestamp": decoded["timestamp"],
         "hash": decoded["hash"],
+        "giftCode": decoded["giftCode"],
+        "index": decoded["index"],
       };
 
       context.read<ScannerCubit>().QrScan(value: payload);
